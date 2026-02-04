@@ -1,4 +1,13 @@
 /* Navigation Styles */
+:root {
+    --primary-color: #ff2d78; 
+    --secondary-color: #026E82; 
+    --accent-gold: #CDB181;   
+    --dark-color: #1a1a1a;
+    --light-color: #fff0f5;    
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
 header {
     background-color: #fff;
     padding: 20px 0;
