@@ -28,14 +28,16 @@ This landing page presents Ciobanu Irina's SMM services, featuring:
 ## 📸 Screenshots
 
 ### Desktop View
-![Desktop Hero Section](img/desktop-hero.png)
-<!-- ![Desktop Services](screenshots/desktop-services.png) -->
+<img src="img/desktop-hero.png" alt="Desktop Hero Section" width="900">
+<!-- <img src="screenshots/desktop-services.png" alt="Desktop Services" width="900"> -->
 
 ### Mobile View
-![Mobile View](img/mobile-view.png)
+<p align="center">
+  <img src="img/mobile-view.jpg" alt="Mobile View" width="220">
+</p>
 
 ### Tablet View
-![Tablet View](img/tablet-view.png)
+<img src="img/tablet-view.png" alt="Tablet View" width="600">
 
 ## 🚀 Live Demo
 
