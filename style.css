@@ -105,7 +105,7 @@ nav ul li a {
 /* HERO */
 #hero {
     padding: 40px 0 20px 0;
-    min-height: 80vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     background-color: var(--light-color);
@@ -216,26 +216,27 @@ nav ul li a {
 
 .card h3 {
     color: var(--secondary-color);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
 }
 
 .price {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: block;
 }
 
 .card ul {
     list-style: none;
     text-align: left;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 .card ul li {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
     color: #666;
 }
 
@@ -243,16 +244,25 @@ nav ul li a {
     border: 1px dashed var(--secondary-color);
 }
 
+.card p {
+    line-height: 1.6;
+}
+
 /* RESULTS */
+#portfolio {
+    scroll-margin-top: 80px;
+}
+
 .results-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     background-color: var(--primary-color);
-    padding: 50px;
+    padding: 35px;
     border-radius: 20px;
     color: white;
     text-align: center;
-    gap: 30px;
+    gap: 20px;
+    margin: 0 20px;
 }
 
 .stat {
