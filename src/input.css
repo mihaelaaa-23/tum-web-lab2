@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal scroll on mobile */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* ========================================
+   MOBILE-ONLY SECTION
+   ======================================== */
+
+@layer components {
+  .mobile-only-section {
+    display: none;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-only-section {
+      display: block;
+      background: linear-gradient(135deg, #026E82, #024959);
+      padding: 40px 20px;
+      text-align: center;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .mobile-only-section h3 {
+      color: white;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-family: 'Funnel Display', sans-serif;
+    }
+
+    .mobile-cta-text {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mobile-features {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 10px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .feature-icon svg {
+      width: 28px;
+      height: 28px;
+      color: #CDB181;
+    }
+
+    .mobile-feature-item p {
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0;
+      font-family: 'Funnel Display', sans-serif;
+    }
+
+    .mobile-cta-btn {
+      display: inline-block;
+      background: #CDB181;
+      color: #1a1a1a;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(205, 177, 129, 0.3);
+    }
+
+    .mobile-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(205, 177, 129, 0.4);
+    }
+  }
+
+  /* ========================================
+     MASCOT STYLES & ANIMATIONS
+     ======================================== */
+
+  .mascot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    opacity: 0;
+    animation: mascotAppear 0.8s ease-out 2s forwards;
+  }
+
+  .mascot {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    animation: mascotFloat 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .mascot:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .mascot svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 16px rgba(2, 110, 130, 0.3));
+  }
+
+  /* Wing animations */
+  .wing-left {
+    transform-origin: 60px 120px;
+    animation: wingFlapLeft 0.6s ease-in-out infinite;
+  }
+
+  .wing-right {
+    transform-origin: 140px 120px;
+    animation: wingFlapRight 0.6s ease-in-out infinite;
+  }
+
+  /* Speech bubble */
+  .mascot-bubble {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    max-width: 280px;
+  }
+
+  .mascot-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 30px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+  }
+
+  .mascot-bubble p {
+    margin: 0;
+    color: #026E82;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .mascot-container:hover .mascot-bubble {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Keyframe Animations */
+  @keyframes mascotAppear {
+    0% {
+      opacity: 0;
+      transform: translateY(100px) scale(0.8);
+    }
+    60% {
+      transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes mascotFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes wingFlapLeft {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-20deg);
+    }
+  }
+
+  @keyframes wingFlapRight {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+  }
+
+  /* Mobile adjustments for mascot */
+  @media (max-width: 768px) {
+    .mascot-container {
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .mascot {
+      width: 90px;
+      height: 90px;
+    }
+    
+    .mascot-bubble {
+      min-width: 200px;
+      max-width: 220px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mascot-container {
+      bottom: 15px;
+      right: 15px;
+    }
+    
+    .mascot {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .mascot-bubble {
+      min-width: 180px;
+      max-width: 200px;
+      padding: 10px 14px;
+    }
+    
+    .mascot-bubble p {
+      font-size: 0.8rem;
+    }
+  }
+}
