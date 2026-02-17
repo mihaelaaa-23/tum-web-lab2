@@ -100,6 +100,33 @@
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(205, 177, 129, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(205, 177, 129, 0.8);
+  }
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
