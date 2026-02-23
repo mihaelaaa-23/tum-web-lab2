@@ -27,13 +27,18 @@
 
         .reviews-viewport {
             overflow: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
         .reviews-track {
             display: flex;
             gap: var(--reviews-gap);
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: transform;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
 
         .reviews-shell {
@@ -95,6 +100,8 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
             position: relative;
             overflow: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
 
@@ -213,6 +220,27 @@
             color: #026E82;
         }
 
+        /* Mobile navbar - fixed positioning */
+        @media (max-width: 640px) {
+            .header-navbar {
+                position: fixed !important;
+                width: 100%;
+                left: 0;
+                right: 0;
+            }
+
+            body {
+                padding-top: 70px;
+            }
+        }
+
+        /* Tablet and desktop navbar - sticky positioning */
+        @media (min-width: 641px) {
+            .header-navbar {
+                position: sticky !important;
+            }
+        }
+
         @media (min-width: 900px) {
             .reviews-shell {
                 --reviews-gap: 1.5rem;
@@ -223,9 +251,91 @@
             }
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 900px) and (min-width: 641px) {
+            body {
+                overflow-x: hidden;
+            }
+
             .reviews-nav {
                 display: none;
+            }
+
+            .reviews-shell {
+                padding: 0 30px;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .reviews-viewport {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+            }
+
+            .review-card {
+                flex: 0 0 calc(50% - 0.5rem);
+                max-width: calc(50% - 0.5rem);
+                scroll-snap-align: center;
+            }
+
+            .review-card:hover {
+                transform: none;
+                box-shadow: 0 8px 18px rgba(15, 26, 43, 0.08);
+                border-color: #e5e7eb;
+                background-color: #fff;
+            }
+
+            #reviews .review-card.stagger-item {
+                animation: none !important;
+                opacity: 1;
+            }
+
+            .reviews-track {
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .reviews-nav {
+                display: none;
+            }
+
+            .reviews-shell {
+                padding: 0 20px;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .reviews-viewport {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                width: 100%;
+            }
+
+            .review-card {
+                flex: 0 0 100%;
+                max-width: 100%;
+                scroll-snap-align: center;
+            }
+
+            .review-card:hover {
+                transform: none;
+                box-shadow: 0 8px 18px rgba(15, 26, 43, 0.08);
+                border-color: #e5e7eb;
+                background-color: #fff;
+            }
+
+            #reviews .review-card.stagger-item {
+                animation: none !important;
+                opacity: 1;
+            }
+
+            .reviews-track {
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             }
         }
     </style>
@@ -234,12 +344,19 @@
 <body class="font-heading bg-light text-dark leading-relaxed">
     <div class="w-full">
 
-        <header class="bg-white py-3 md:py-5 sticky top-0 z-50 shadow-sm">
-            <div class="container max-w-[1100px] mx-auto px-4">
+        <header class="bg-white py-3 md:py-5 top-0 z-50 shadow-sm header-navbar">
+            <div class="container max-w-[1100px] mx-auto px-4 relative">
                 <nav class="flex justify-between items-center">
                     <div class="logo font-accent text-primary italic text-2xl md:text-3xl font-medium">Ciobanu Irina
                     </div>
-                    <ul class="flex gap-2 md:gap-5 list-none items-center text-sm md:text-base">
+                    <button id="mobile-menu-button" class="mobile-menu-button md:hidden" type="button"
+                        aria-expanded="false" aria-controls="mobile-menu">
+                        <span class="sr-only">Deschide meniul</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 7h16M4 12h16M4 17h16" />
+                        </svg>
+                    </button>
+                    <ul class="hidden md:flex gap-2 md:gap-5 list-none items-center text-sm md:text-base">
                         <li><a href="#services"
                                 class="no-underline text-dark font-semibold hover:text-primary transition-colors">Pachete</a>
                         </li>
@@ -296,6 +413,12 @@
                         </li>
                     </ul>
                 </nav>
+                <div id="mobile-menu" class="mobile-menu md:hidden" role="menu" aria-label="Meniu principal">
+                    <a role="menuitem" href="#services">Pachete</a>
+                    <a role="menuitem" href="#results-video">Case-uri</a>
+                    <a role="menuitem" href="#reviews">Recenzii</a>
+                    <a role="menuitem" href="#contact">Contact</a>
+                </div>
             </div>
         </header>
 
@@ -928,7 +1051,7 @@
                             <strong>Telefon:</strong> 062 004 096
                         </a>
                         <a href="mailto:ciobanuirina.smm@gmail.com"
-                            class="text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary break-all">
+                            class="contact-email text-sm sm:text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary">
                             <strong>Email:</strong> ciobanuirina.smm@gmail.com
                         </a>
                     </div>
@@ -1009,13 +1132,17 @@
             const track = document.querySelector('#reviews .reviews-track');
             const prevButton = document.querySelector('#reviews .reviews-nav.prev');
             const nextButton = document.querySelector('#reviews .reviews-nav.next');
+            const viewport = document.querySelector('#reviews .reviews-viewport');
 
-            if (!track || !prevButton || !nextButton) {
+            if (!track || !prevButton || !nextButton || !viewport) {
                 return;
             }
 
             let isAnimating = false;
             let shift = 0;
+            const isMobile = window.innerWidth <= 900;
+            const transitionDuration = isMobile ? 0.4 : 0.5;
+            const transitionTiming = isMobile ? 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'cubic-bezier(0.4, 0, 0.2, 1)';
 
             const updateShift = () => {
                 const card = track.querySelector('.review-card');
@@ -1034,27 +1161,35 @@
                 updateShift();
                 isAnimating = true;
 
-                // Use hardware acceleration
-                track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                track.style.transform = `translateX(-${shift}px)`;
+                // Use hardware acceleration with optimized timing
+                track.style.transition = `transform ${transitionDuration}s ${transitionTiming}`;
+                track.style.transform = `translate3d(-${shift}px, 0, 0)`;
 
                 const handle = () => {
                     track.removeEventListener('transitionend', handle);
                     // Move item to end and reset position instantly
                     requestAnimationFrame(() => {
                         track.style.transition = 'none';
-                        track.style.transform = 'translateX(0)';
+                        track.style.transform = 'translate3d(0, 0, 0)';
                         track.appendChild(track.firstElementChild);
                         // Force reflow to ensure no animation
                         void track.offsetWidth;
                         requestAnimationFrame(() => {
-                            track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                            track.style.transition = `transform ${transitionDuration}s ${transitionTiming}`;
                             isAnimating = false;
                         });
                     });
                 };
 
                 track.addEventListener('transitionend', handle, { once: true });
+                
+                // Fallback timeout in case transitionend doesn't fire
+                setTimeout(() => {
+                    if (isAnimating) {
+                        track.removeEventListener('transitionend', handle);
+                        handle();
+                    }
+                }, (transitionDuration * 1000) + 100);
             };
 
             const onPrev = () => {
@@ -1068,13 +1203,13 @@
                 requestAnimationFrame(() => {
                     track.style.transition = 'none';
                     track.insertBefore(track.lastElementChild, track.firstElementChild);
-                    track.style.transform = `translateX(-${shift}px)`;
+                    track.style.transform = `translate3d(-${shift}px, 0, 0)`;
                     // Force reflow
                     void track.offsetWidth;
 
                     requestAnimationFrame(() => {
-                        track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                        track.style.transform = 'translateX(0)';
+                        track.style.transition = `transform ${transitionDuration}s ${transitionTiming}`;
+                        track.style.transform = 'translate3d(0, 0, 0)';
                     });
                 });
 
@@ -1084,13 +1219,81 @@
                 };
 
                 track.addEventListener('transitionend', handle, { once: true });
+                
+                // Fallback timeout
+                setTimeout(() => {
+                    if (isAnimating) {
+                        track.removeEventListener('transitionend', handle);
+                        handle();
+                    }
+                }, (transitionDuration * 1000) + 100);
             };
 
+            // Button controls
             prevButton.addEventListener('click', onPrev);
             nextButton.addEventListener('click', onNext);
 
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let touchStartY = 0;
+            let touchEndY = 0;
+            let isSwiping = false;
+
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+                touchStartY = e.changedTouches[0].clientY;
+                isSwiping = false;
+            }, { passive: true });
+
+            viewport.addEventListener('touchmove', (e) => {
+                if (!isSwiping) {
+                    const touchX = e.changedTouches[0].clientX;
+                    const touchY = e.changedTouches[0].clientY;
+                    const deltaX = Math.abs(touchX - touchStartX);
+                    const deltaY = Math.abs(touchY - touchStartY);
+                    
+                    // Determine if this is a horizontal swipe
+                    if (deltaX > deltaY && deltaX > 10) {
+                        isSwiping = true;
+                    }
+                }
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                touchEndY = e.changedTouches[0].clientY;
+                
+                if (isSwiping) {
+                    handleSwipe();
+                }
+            }, { passive: true });
+
+            const handleSwipe = () => {
+                const swipeThreshold = 50;
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = Math.abs(touchEndY - touchStartY);
+                
+                // Only register horizontal swipes (not vertical scrolls)
+                if (Math.abs(deltaX) > swipeThreshold && deltaY < 100) {
+                    if (deltaX > 0) {
+                        // Swipe right - go to previous
+                        onPrev();
+                    } else {
+                        // Swipe left - go to next
+                        onNext();
+                    }
+                }
+            };
+
             updateShift();
-            window.addEventListener('resize', updateShift);
+            
+            // Debounced resize handler
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(updateShift, 150);
+            });
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -1098,6 +1301,32 @@
             animatedSections.forEach(section => observer.observe(section));
 
             setupReviewsCarousel();
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                const closeMenu = () => {
+                    mobileMenu.classList.remove('is-open');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                };
+
+                mobileMenuButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const isOpen = mobileMenu.classList.toggle('is-open');
+                    mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+                });
+
+                mobileMenu.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', () => closeMenu());
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                        closeMenu();
+                    }
+                });
+            }
         });
 
         // Enhanced button hover effects

@@ -245,6 +245,64 @@
 }
 
 /* ========================================
+   MOBILE MENU
+   ======================================== */
+
+.mobile-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(2, 110, 130, 0.2);
+  background: #fff;
+  color: #026E82;
+  box-shadow: 0 8px 18px rgba(2, 110, 130, 0.12);
+}
+
+.mobile-menu-button svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 16px;
+  right: 16px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 16px 30px rgba(2, 110, 130, 0.15);
+  border: 1px solid rgba(2, 110, 130, 0.12);
+  display: none;
+  z-index: 60;
+}
+
+.mobile-menu.is-open {
+  display: block;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-menu a:hover {
+  background: rgba(2, 110, 130, 0.08);
+  color: #026E82;
+}
+
+/* ========================================
    SPARKLE HEADER BUTTON
    ======================================== */
 
@@ -1101,6 +1159,11 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
+.contact-email {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .review-card:hover {
   box-shadow: 0 8px 24px rgba(2, 110, 130, 0.1);
 }
@@ -1218,25 +1281,44 @@
   right: 0;
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
+/* Tablet adjustments - show 2 cards */
+@media (max-width: 900px) and (min-width: 641px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .reviews-shell {
-    padding: 0 50px;
+    padding: 0 30px;
     gap: 12px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .reviews-nav {
-    width: 40px;
-    height: 40px;
+    display: none;
   }
 
-  .reviews-nav svg {
-    width: 18px;
-    height: 18px;
+  .reviews-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .reviews-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-track {
+    gap: 1rem;
+    padding: 0 12px 8px;
   }
 
   .review-card {
-    max-width: 280px;
+    flex: 0 0 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
+    scroll-snap-align: center;
     padding: 20px 16px;
   }
 
@@ -1255,24 +1337,71 @@
   }
 }
 
+/* Mobile adjustments - show 1 card */
 @media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .reviews-shell {
-    padding: 0 40px;
+    padding: 0 20px;
     gap: 10px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .reviews-nav {
-    width: 36px;
-    height: 36px;
+    display: none;
   }
 
-  .reviews-nav svg {
-    width: 16px;
-    height: 16px;
+  .reviews-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .reviews-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-track {
+    gap: 1rem;
+    padding: 0 12px 8px;
   }
 
   .review-card {
-    max-width: 250px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    scroll-snap-align: center;
+    padding: 16px 12px;
+  }
+
+  .review-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 0.75rem;
+  }
+
+  .review-quote {
+    font-size: 0.8rem;
+  }
+
+  .review-role {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .reviews-shell {
+    padding: 0 20px;
+    gap: 10px;
+  }
+
+  .review-card {
+    flex: 0 0 100%;
+    max-width: 100%;
     padding: 16px 12px;
   }
 
