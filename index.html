@@ -20,10 +20,26 @@
 
     <style>
         /* Reviews section enhancements */
-        .reviews-shell { position: relative; padding: 0 48px; }
-        .reviews-viewport { overflow: hidden; }
-        .reviews-track { display: flex; gap: var(--reviews-gap); transition: transform 0.5s ease; will-change: transform; }
-        .reviews-shell { --reviews-gap: 1.25rem; }
+        .reviews-shell {
+            position: relative;
+            padding: 0 48px;
+        }
+
+        .reviews-viewport {
+            overflow: hidden;
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: var(--reviews-gap);
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+
+        .reviews-shell {
+            --reviews-gap: 1.25rem;
+        }
+
         .reviews-nav {
             position: absolute;
             top: 50%;
@@ -41,10 +57,31 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             cursor: pointer;
         }
-        .reviews-nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-        .reviews-nav.prev { left: 0; }
-        .reviews-nav.next { right: 0; }
-        .reviews-nav:hover { transform: translateY(-50%) scale(1.05); box-shadow: 0 16px 30px rgba(15, 26, 43, 0.3); background: #111f34; }
+
+        .reviews-nav svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .reviews-nav.prev {
+            left: 0;
+        }
+
+        .reviews-nav.next {
+            right: 0;
+        }
+
+        .reviews-nav:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 16px 30px rgba(15, 26, 43, 0.3);
+            background: #111f34;
+        }
+
         .review-card {
             background: #fff;
             border: 1px solid #e5e7eb;
@@ -59,28 +96,25 @@
             position: relative;
             overflow: hidden;
         }
-        .review-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(2, 110, 130, 0.05), transparent);
-            transition: left 0.5s ease;
-            pointer-events: none;
-        }
-        .review-card:hover::before {
-            left: 100%;
-        }
-        .review-card:hover { 
+
+
+        .review-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 20px 40px rgba(2, 110, 130, 0.15);
             border-color: rgba(2, 110, 130, 0.2);
             background-color: rgba(2, 110, 130, 0.02);
         }
-        .review-card { flex: 0 0 100%; }
-        .review-top { display: flex; align-items: center; gap: 16px; }
+
+        .review-card {
+            flex: 0 0 100%;
+        }
+
+        .review-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
         .review-avatar {
             width: 58px;
             height: 58px;
@@ -96,75 +130,104 @@
             box-shadow: 0 0 0 6px #f7f8fb;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .review-card:hover .review-avatar {
             transform: scale(1.15) rotate(5deg);
             box-shadow: 0 0 0 6px #f7f8fb, 0 8px 16px rgba(2, 110, 130, 0.2);
         }
-        .review-meta { display: flex; flex-direction: column; gap: 6px; }
-        .review-name { 
-            margin: 0; 
-            color: #0f1a2b; 
-            font-weight: 700; 
+
+        .review-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .review-name {
+            margin: 0;
+            color: #0f1a2b;
+            font-weight: 700;
             font-size: 1.05rem;
             transition: color 0.3s ease;
         }
+
         .review-card:hover .review-name {
             color: #026E82;
         }
-        .review-stars { 
-            display: flex; 
-            gap: 4px; 
+
+        .review-stars {
+            display: flex;
+            gap: 4px;
             color: #cdb181;
             transition: transform 0.3s ease;
         }
+
         .review-card:hover .review-stars {
             transform: scale(1.1);
         }
-        .review-stars svg { 
-            width: 18px; 
-            height: 18px; 
+
+        .review-stars svg {
+            width: 18px;
+            height: 18px;
             fill: currentColor;
             transition: transform 0.2s ease;
         }
+
         .review-stars svg:hover {
             transform: scale(1.2) rotate(10deg);
         }
-        .review-quote { 
-            margin: 0; 
-            color: #5f6b7a; 
-            font-style: italic; 
-            line-height: 1.7; 
+
+        .review-quote {
+            margin: 0;
+            color: #5f6b7a;
+            font-style: italic;
+            line-height: 1.7;
             font-size: 0.95rem;
             transition: color 0.3s ease;
         }
+
         .review-card:hover .review-quote {
             color: #3a4452;
         }
-        .review-divider { 
-            height: 1px; 
-            background: #e5e7eb; 
+
+        .review-divider {
+            height: 1px;
+            background: #e5e7eb;
             width: 100%;
             transition: background 0.3s ease;
         }
+
         .review-card:hover .review-divider {
             background: #026E82;
             height: 2px;
         }
-        .review-role { 
-            margin: 0; 
-            color: #8b98a7; 
-            font-weight: 600; 
+
+        .review-role {
+            margin: 0;
+            color: #8b98a7;
+            font-weight: 600;
             font-size: 0.85rem;
             transition: color 0.3s ease;
         }
+
         .review-card:hover .review-role {
             color: #026E82;
         }
+
         @media (min-width: 900px) {
-            .reviews-shell { --reviews-gap: 1.5rem; }
-            .review-card { flex: 0 0 calc((100% - (2 * var(--reviews-gap))) / 3); }
+            .reviews-shell {
+                --reviews-gap: 1.5rem;
+            }
+
+            .review-card {
+                flex: 0 0 calc((100% - (2 * var(--reviews-gap))) / 3);
+            }
         }
-        @media (max-width: 900px) { .reviews-nav { display: none; } }
+
+        @media (max-width: 900px) {
+            .reviews-nav {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -174,7 +237,7 @@
         <header class="bg-white py-3 md:py-5 sticky top-0 z-50 shadow-sm">
             <div class="container max-w-[1100px] mx-auto px-4">
                 <nav class="flex justify-between items-center">
-                    <div class="logo font-accent text-primary italic text-2xl md:text-4xl font-medium">Ciobanu Irina
+                    <div class="logo font-accent text-primary italic text-2xl md:text-3xl font-medium">Ciobanu Irina
                     </div>
                     <ul class="flex gap-2 md:gap-5 list-none items-center text-sm md:text-base">
                         <li><a href="#services"
@@ -187,8 +250,49 @@
                         <!-- <li><a href="#portfolio"
                                 class="no-underline text-dark font-semibold hover:text-primary transition-colors hidden md:inline">Rezultate</a>
                         </li> -->
-                        <li><a href="#contact"
-                                class="bg-primary text-white px-3 py-2 md:px-5 md:py-2.5 rounded-lg no-underline font-semibold hover:bg-opacity-90 transition-all text-sm md:text-base">Contact</a>
+                        <li class="sp">
+                            <a href="#contact" class="sparkle-button" aria-label="Contact">
+                                <span class="spark" aria-hidden="true"></span>
+                                <span class="backdrop" aria-hidden="true"></span>
+                                <svg class="sparkle" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path
+                                        d="M14.187 8.096L15 5.25L15.813 8.096C16.0231 8.83114 16.4171 9.50062 16.9577 10.0413C17.4984 10.5819 18.1679 10.9759 18.903 11.186L21.75 12L18.904 12.813C18.1689 13.0231 17.4994 13.4171 16.9587 13.9577C16.4181 14.4984 16.0241 15.1679 15.814 15.903L15 18.75L14.187 15.904C13.9769 15.1689 13.5829 14.4994 13.0423 13.9587C12.5016 13.4181 11.8321 13.0241 11.097 12.814L8.25 12L11.096 11.187C11.8311 10.9769 12.5006 10.5829 13.0413 10.0423C13.5819 9.50162 13.9759 8.83214 14.186 8.097L14.187 8.096Z" />
+                                    <path
+                                        d="M6 14.25L5.741 15.285C5.59267 15.8785 5.28579 16.4206 4.85319 16.8532C4.42059 17.2858 3.87853 17.5927 3.285 17.741L2.25 18L3.285 18.259C3.87853 18.4073 4.42059 18.7142 4.85319 19.1468C5.28579 19.5794 5.59267 20.1215 5.741 20.715L6 21.75L6.259 20.715C6.40725 20.1216 6.71398 19.5796 7.14639 19.147C7.5788 18.7144 8.12065 18.4075 8.714 18.259L9.75 18L8.714 17.741C8.12065 17.5925 7.5788 17.2856 7.14639 16.853C6.71398 16.4204 6.40725 15.8784 6.259 15.285L6 14.25Z" />
+                                    <path
+                                        d="M6.5 4L6.303 4.5915C6.24777 4.75718 6.15472 4.90774 6.03123 5.03123C5.90774 5.15472 5.75718 5.24777 5.5915 5.303L5 5.5L5.5915 5.697C5.75718 5.75223 5.90774 5.84528 6.03123 5.96877C6.15472 6.09226 6.24777 6.24282 6.303 6.4085L6.5 7L6.697 6.4085C6.75223 6.24282 6.84528 6.09226 6.96877 5.96877C7.09226 5.84528 7.24282 5.75223 7.4085 5.697L8 5.5L7.4085 5.303C7.24282 5.24777 7.09226 5.15472 6.96877 5.03123C6.84528 4.90774 6.75223 4.75718 6.697 4.5915L6.5 4Z" />
+                                </svg>
+                                <span class="sparkle-text">Contact</span>
+                            </a>
+                            <div class="bodydrop" aria-hidden="true"></div>
+                            <span class="particle-pen" aria-hidden="true">
+                                <svg class="particle" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="--x: 20; --y: 25; --size: 0.32;">
+                                    <path
+                                        d="M6.937 3.846L7.75 1L8.563 3.846C8.77313 4.58114 9.1671 5.25062 9.70774 5.79126C10.2484 6.3319 10.9179 6.72587 11.653 6.936L14.5 7.75L11.654 8.563C10.9189 8.77313 10.2494 9.1671 9.70874 9.70774C9.1681 10.2484 8.77413 10.9179 8.564 11.653L7.75 14.5L6.937 11.654C6.72687 10.9189 6.3329 10.2494 5.79226 9.70874C5.25162 9.1681 4.58214 8.77413 3.847 8.564L1 7.75L3.846 6.937C4.58114 6.72687 5.25062 6.3329 5.79126 5.79226C6.3319 5.25162 6.72587 4.58214 6.936 3.847L6.937 3.846Z" />
+                                </svg>
+                                <svg class="particle" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="--x: 72; --y: 10; --size: 0.28;">
+                                    <path
+                                        d="M6.937 3.846L7.75 1L8.563 3.846C8.77313 4.58114 9.1671 5.25062 9.70774 5.79126C10.2484 6.3319 10.9179 6.72587 11.653 6.936L14.5 7.75L11.654 8.563C10.9189 8.77313 10.2494 9.1671 9.70874 9.70774C9.1681 10.2484 8.77413 10.9179 8.564 11.653L7.75 14.5L6.937 11.654C6.72687 10.9189 6.3329 10.2494 5.79226 9.70874C5.25162 9.1681 4.58214 8.77413 3.847 8.564L1 7.75L3.846 6.937C4.58114 6.72687 5.25062 6.3329 5.79126 5.79226C6.3319 5.25162 6.72587 4.58214 6.936 3.847L6.937 3.846Z" />
+                                </svg>
+                                <svg class="particle" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="--x: 86; --y: 65; --size: 0.24;">
+                                    <path
+                                        d="M6.937 3.846L7.75 1L8.563 3.846C8.77313 4.58114 9.1671 5.25062 9.70774 5.79126C10.2484 6.3319 10.9179 6.72587 11.653 6.936L14.5 7.75L11.654 8.563C10.9189 8.77313 10.2494 9.1671 9.70874 9.70774C9.1681 10.2484 8.77413 10.9179 8.564 11.653L7.75 14.5L6.937 11.654C6.72687 10.9189 6.3329 10.2494 5.79226 9.70874C5.25162 9.1681 4.58214 8.77413 3.847 8.564L1 7.75L3.846 6.937C4.58114 6.72687 5.25062 6.3329 5.79126 5.79226C6.3319 5.25162 6.72587 4.58214 6.936 3.847L6.937 3.846Z" />
+                                </svg>
+                                <svg class="particle" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="--x: 40; --y: 78; --size: 0.26;">
+                                    <path
+                                        d="M6.937 3.846L7.75 1L8.563 3.846C8.77313 4.58114 9.1671 5.25062 9.70774 5.79126C10.2484 6.3319 10.9179 6.72587 11.653 6.936L14.5 7.75L11.654 8.563C10.9189 8.77313 10.2494 9.1671 9.70874 9.70774C9.1681 10.2484 8.77413 10.9179 8.564 11.653L7.75 14.5L6.937 11.654C6.72687 10.9189 6.3329 10.2494 5.79226 9.70874C5.25162 9.1681 4.58214 8.77413 3.847 8.564L1 7.75L3.846 6.937C4.58114 6.72687 5.25062 6.3329 5.79126 5.79226C6.3319 5.25162 6.72587 4.58214 6.936 3.847L6.937 3.846Z" />
+                                </svg>
+                                <svg class="particle" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" style="--x: 58; --y: 48; --size: 0.22;">
+                                    <path
+                                        d="M6.937 3.846L7.75 1L8.563 3.846C8.77313 4.58114 9.1671 5.25062 9.70774 5.79126C10.2484 6.3319 10.9179 6.72587 11.653 6.936L14.5 7.75L11.654 8.563C10.9189 8.77313 10.2494 9.1671 9.70874 9.70774C9.1681 10.2484 8.77413 10.9179 8.564 11.653L7.75 14.5L6.937 11.654C6.72687 10.9189 6.3329 10.2494 5.79226 9.70874C5.25162 9.1681 4.58214 8.77413 3.847 8.564L1 7.75L3.846 6.937C4.58114 6.72687 5.25062 6.3329 5.79126 5.79226C6.3319 5.25162 6.72587 4.58214 6.936 3.847L6.937 3.846Z" />
+                                </svg>
+                            </span>
                         </li>
                     </ul>
                 </nav>
@@ -413,9 +517,10 @@
                                         <div class="pkg-divider"></div>
                                     </div>
                                     <div class="pkg-bottom">
-                                        <p class="pkg-features-text">Strategie unică adaptată exact obiectivelor tale. 
+                                        <p class="pkg-features-text">Strategie unică adaptată exact obiectivelor tale.
                                             <br>
-                                            Hai să discutăm ce funcționează pentru businessul tău.</p>
+                                            Hai să discutăm ce funcționează pentru businessul tău.
+                                        </p>
                                         <a href="#contact" class="pkg-cta">Cere detalii</a>
                                     </div>
                                 </div>
@@ -433,32 +538,41 @@
                     class="stagger-item font-accent text-white italic text-2xl sm:text-3xl md:text-5xl text-center mb-4 font-medium px-2">
                     Social Media
                     = Vânzări Reale</h2>
-                <p class="stagger-item text-white/90 text-center max-w-[800px] mx-auto mb-8 text-sm md:text-base">Social media nu e
+                <p class="stagger-item text-white/90 text-center max-w-[800px] mx-auto mb-8 text-sm md:text-base">Social
+                    media nu e
                     doar despre like-uri. E despre rezultate măsurabile care cresc businessul tău.</p>
 
                 <div
                     class="stagger-item bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-6 md:p-10 max-w-[800px] mx-auto">
                     <div class="text-center mb-6">
                         <div
-                            class="inline-block bg-[#CDB181] text-[#1a1a1a] px-6 py-2 rounded-full font-bold text-sm md:text-base mb-4 animate-[breathe_3s_ease-in-out_infinite]">
+                            class="inline-block bg-[#CDB181] text-[#1a1a1a] px-6 py-2 rounded-full font-bold text-sm md:text-base mb-4">
                             STUDIU DE CAZ: VÂNZĂRI GENERATE PRIN TIKTOK
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
-                        <div class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
-                            <div class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite]">€20k+</div>
+                        <div
+                            class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
+                            <div
+                                class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite]">
+                                €20k+</div>
                             <p class="text-white text-sm">Vânzări lunare medii</p>
                         </div>
-                        <div class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
-                            <div class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite_0.3s]">TikTok</div>
+                        <div
+                            class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
+                            <div
+                                class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite_0.3s]">
+                                TikTok</div>
                             <p class="text-white text-sm">Platforma principală</p>
                         </div>
-                        <div class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
-                            <div class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite_0.6s]">
+                        <div
+                            class="stagger-item holographic-card bg-white/5 border border-white/10 rounded-2xl p-5 transition-all">
+                            <div
+                                class="text-4xl md:text-5xl font-extrabold text-[#CDB181] mb-2 animate-[glow_2s_ease-in-out_infinite_0.6s]">
                                 7 zile
                             </div>
-                            <p class="text-white text-sm">Primele vânzări prin TikTok</p>
+                            <p class="text-white text-sm">Primele vânzări</p>
                         </div>
                     </div>
 
@@ -467,27 +581,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- <section id="portfolio" class="bg-[#f9fafb] py-8 md:py-10 scroll-mt-20 scroll-animate">
-            <div class="container max-w-[1100px] mx-auto px-4">
-            <h2 class="font-accent text-primary italic text-3xl md:text-5xl text-center mb-8 md:mb-10 font-medium">
-                Rezultate Reale</h2>
-            <div
-                class="grid grid-cols-1 md:grid-cols-3 bg-primary p-6 md:p-9 rounded-3xl text-white text-center gap-4 md:gap-5">
-                <div class="result-box stagger-item">
-                    <span class="text-4xl md:text-5xl font-extrabold text-secondary block">+6k</span>
-                    <p class="text-sm md:text-base">Urmăritori noi în 57 zile</p>
-                </div>
-                <div class="result-box stagger-item">
-                    <span class="text-4xl md:text-5xl font-extrabold text-secondary block">+21.1k</span>
-                    <p class="text-sm md:text-base">Like-uri aduse organic</p>
-                </div>
-                <div class="result-box stagger-item">
-                    <span class="text-4xl md:text-5xl font-extrabold text-secondary block">+110</span>
-                    <p class="text-sm md:text-base">Comenzi generate prin TikTok</p>
-                </div>
-            </div>
-        </section> -->
 
         <section id="results-video" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate">
             <div class="container max-w-[1100px] mx-auto px-4">
@@ -575,233 +668,237 @@
 
                     <div class="reviews-viewport">
                         <div class="reviews-track">
-                        <!-- Review 1 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">AE</div>
-                                <div class="review-meta">
-                                    <p class="review-name">AGROelit</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 1 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">AE</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">AGROelit</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Colaborarea cu Irina a fost impecabila. Strategia a fost clara, iar rezultatele s-au
-                                vazut rapid."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Companie agricola, regiunea Nord</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Colaborarea cu Irina a fost impecabila. Strategia a fost clara, iar rezultatele
+                                    s-au
+                                    vazut rapid."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Companie agricola, regiunea Nord</p>
+                            </article>
 
-                        <!-- Review 2 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">SZ</div>
-                                <div class="review-meta">
-                                    <p class="review-name">Sudzucker</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 2 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">SZ</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">Sudzucker</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Comunicare foarte buna si livrare constanta. Am vazut crestere reala la engagement si
-                                reach."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Producator industrial</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Comunicare foarte buna si livrare constanta. Am vazut crestere reala la engagement
+                                    si
+                                    reach."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Producator industrial</p>
+                            </article>
 
-                        <!-- Review 3 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">MC</div>
-                                <div class="review-meta">
-                                    <p class="review-name">Marshalcon</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 3 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">MC</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">Marshalcon</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Solutii complete si atentie la detalii. Proiectul a fost livrat la timp si peste
-                                asteptari."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Companie de constructii</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Solutii complete si atentie la detalii. Proiectul a fost livrat la timp si peste
+                                    asteptari."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Companie de constructii</p>
+                            </article>
 
-                        <!-- Review 4 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">GM</div>
-                                <div class="review-meta">
-                                    <p class="review-name">Garduri.MD</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 4 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">GM</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">Garduri.MD</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Vizibilitate crescuta si cereri constante. Ne-a placut atentia la detalii si ritmul de
-                                lucru."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Companie de constructii</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Vizibilitate crescuta si cereri constante. Ne-a placut atentia la detalii si ritmul
+                                    de
+                                    lucru."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Companie de constructii</p>
+                            </article>
 
-                        <!-- Review 5 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">NC</div>
-                                <div class="review-meta">
-                                    <p class="review-name">Nigrol Company</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 5 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">NC</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">Nigrol Company</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Am primit un plan clar si rezultate masurabile. Colaborarea a fost eficienta si bine
-                                organizata."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Retail si distributie</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Am primit un plan clar si rezultate masurabile. Colaborarea a fost eficienta si
+                                    bine
+                                    organizata."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Retail si distributie</p>
+                            </article>
 
-                        <!-- Review 6 -->
-                        <article class="review-card stagger-item">
-                            <div class="review-top">
-                                <div class="review-avatar">SP</div>
-                                <div class="review-meta">
-                                    <p class="review-name">Solor Panel Company</p>
-                                    <div class="review-stars" aria-label="5 stele">
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg viewBox="0 0 20 20" aria-hidden="true">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
+                            <!-- Review 6 -->
+                            <article class="review-card stagger-item">
+                                <div class="review-top">
+                                    <div class="review-avatar">SP</div>
+                                    <div class="review-meta">
+                                        <p class="review-name">Solor Panel Company</p>
+                                        <div class="review-stars" aria-label="5 stele">
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                            <svg viewBox="0 0 20 20" aria-hidden="true">
+                                                <path
+                                                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <p class="review-quote">
-                                "Mesajul nostru a ajuns la clientii potriviti. Campaniile au fost creative si bine
-                                targetate."
-                            </p>
-                            <div class="review-divider"></div>
-                            <p class="review-role">Energie regenerabila</p>
-                        </article>
+                                <p class="review-quote">
+                                    "Mesajul nostru a ajuns la clientii potriviti. Campaniile au fost creative si bine
+                                    targetate."
+                                </p>
+                                <div class="review-divider"></div>
+                                <p class="review-role">Energie regenerabila</p>
+                            </article>
                         </div>
                     </div>
 
@@ -936,7 +1033,7 @@
                 }
                 updateShift();
                 isAnimating = true;
-                
+
                 // Use hardware acceleration
                 track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                 track.style.transform = `translateX(-${shift}px)`;
@@ -966,7 +1063,7 @@
                 }
                 updateShift();
                 isAnimating = true;
-                
+
                 // Move item to beginning
                 requestAnimationFrame(() => {
                     track.style.transition = 'none';
@@ -974,7 +1071,7 @@
                     track.style.transform = `translateX(-${shift}px)`;
                     // Force reflow
                     void track.offsetWidth;
-                    
+
                     requestAnimationFrame(() => {
                         track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
                         track.style.transform = 'translateX(0)';
