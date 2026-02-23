@@ -1137,14 +1137,13 @@
 .reviews-viewport {
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  padding: 8px 2px 16px;
 }
 
 .reviews-track {
   display: flex;
   gap: 1.5rem;
   will-change: transform;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .review-card {
@@ -1187,6 +1186,20 @@
   color: #CDB181;
   font-weight: 700;
   font-size: 0.9rem;
+}
+
+.review-avatar-img {
+  background: white;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.review-avatar-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 .review-meta {
