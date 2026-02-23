@@ -399,6 +399,124 @@
                 transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             }
         }
+
+        /* Trusted Clients Infinite Scroll */
+        .clients-scroll-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .clients-track {
+            display: flex;
+            gap: 40px;
+            animation: scroll-clients 30s linear infinite;
+            width: fit-content;
+        }
+
+        .clients-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-clients {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .client-logo {
+            flex-shrink: 0;
+            width: 160px;
+            height: 160px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .client-logo:hover {
+            transform: scale(1.3);
+            z-index: 10;
+        }
+
+        .logo-wrapper {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(15, 26, 43, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #e5e7eb;
+        }
+
+        .client-logo:hover .logo-wrapper {
+            box-shadow: 0 20px 50px rgba(2, 110, 130, 0.25);
+            border-color: #026E82;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fcfd 100%);
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            filter: grayscale(40%);
+            opacity: 0.85;
+        }
+
+        .client-logo:hover .logo-wrapper img {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .clients-track {
+                gap: 30px;
+            }
+
+            .client-logo {
+                width: 130px;
+                height: 130px;
+            }
+
+            .client-logo:hover {
+                transform: scale(1.25);
+            }
+
+            .logo-wrapper {
+                padding: 15px;
+                border-radius: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .clients-track {
+                gap: 24px;
+            }
+
+            .client-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .client-logo:hover {
+                transform: scale(1.2);
+            }
+
+            .logo-wrapper {
+                padding: 12px;
+                border-radius: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -1091,6 +1209,120 @@
                             <path d="M9 6l6 6-6 6" />
                         </svg>
                     </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted Clients Section -->
+        <section id="trusted-clients" class="bg-white py-12 md:py-16 scroll-mt-20 scroll-animate overflow-hidden">
+            <div class="container max-w-[1100px] mx-auto px-4">
+                <h2 class="font-accent text-3xl md:text-5xl text-primary mb-3 text-center font-medium italic">
+                    Clienți de Încredere
+                </h2>
+                <p class="text-center text-gray-600 mb-10 md:mb-14 max-w-2xl mx-auto">
+                    Colaborări de succes cu branduri care și-au transformat prezența digitală
+                </p>
+                
+                <div class="clients-scroll-wrapper">
+                    <div class="clients-track">
+                        <!-- First set of logos -->
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-1.png" alt="Client 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23026E82%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC1%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-2.png" alt="Client 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23E85D75%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC2%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-3.png" alt="Client 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23F4A261%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC3%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-4.png" alt="Client 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%232A9D8F%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC4%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-5.png" alt="Client 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23264653%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC5%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-6.png" alt="Client 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23E76F51%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC6%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-7.png" alt="Client 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%236D597A%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC7%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-8.png" alt="Client 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23B56576%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC8%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-1.png" alt="Client 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23026E82%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC1%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-2.png" alt="Client 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23E85D75%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC2%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-3.png" alt="Client 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23F4A261%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC3%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-4.png" alt="Client 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%232A9D8F%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC4%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-5.png" alt="Client 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23264653%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC5%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-6.png" alt="Client 6" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23E76F51%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC6%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-7.png" alt="Client 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%236D597A%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC7%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                        
+                        <div class="client-logo">
+                            <div class="logo-wrapper">
+                                <img src="img/client-8.png" alt="Client 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23B56576%22 width=%22200%22 height=%22200%22 rx=%2220%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2260%22 font-weight=%22bold%22%3EC8%3C/text%3E%3C/svg%3E'">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
