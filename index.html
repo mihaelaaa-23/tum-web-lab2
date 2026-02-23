@@ -1608,6 +1608,15 @@
 
             setupReviewsCarousel();
 
+            // Card flip – tap to toggle on touch devices
+            document.querySelectorAll('.pkg-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const isFlipped = card.classList.contains('flipped');
+                    document.querySelectorAll('.pkg-card.flipped').forEach(c => c.classList.remove('flipped'));
+                    if (!isFlipped) card.classList.add('flipped');
+                });
+            });
+
             // Dynamic navbar height compensation for fixed mobile navbar
             const updateNavbarOffset = () => {
                 const navbar = document.querySelector('.header-navbar');
