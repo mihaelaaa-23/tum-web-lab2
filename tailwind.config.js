@@ -14,7 +14,7 @@ module.exports = {
       },
       fontFamily: {
         accent: ['"Playfair Display"', 'serif'],
-        heading: ['"Funnel Display"', 'sans-serif'],
+        heading: ['"Montserrat"', 'sans-serif'],
       },
     },
   },
