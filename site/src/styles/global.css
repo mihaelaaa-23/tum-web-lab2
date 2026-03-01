@@ -301,3 +301,9 @@
 .reviews-nav svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 .reviews-nav.prev { left: 0; }
 .reviews-nav.next { right: 0; }
+
+@media (min-width: 900px) {
+  .review-card {
+    flex: 0 0 calc((100% - (2 * 1.5rem)) / 3);
+  }
+}
