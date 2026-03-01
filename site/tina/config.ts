@@ -29,6 +29,44 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "hero",
+        label: "Hero Section",
+        path: "content/hero",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "subtext",
+            label: "Subtext",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "ctaLabel",
+            label: "CTA Button Label",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "ctaHref",
+            label: "CTA Button Link",
+            required: true,
+          },
+        ],
+      },
     ],
   },
 });
