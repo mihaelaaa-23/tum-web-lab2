@@ -1,0 +1,32 @@
+---
+const clients = Array.from({ length: 12 }, (_, i) => ({
+  img: `client-${i + 1}.png`,
+  alt: `Client ${i + 1}`,
+}));
+---
+
+<section id="trusted-clients" class="bg-white py-12 md:py-16 scroll-mt-20 overflow-hidden">
+  <div class="container max-w-[1100px] mx-auto px-4">
+    <h2 class="font-accent text-3xl md:text-5xl text-primary mb-3 text-center font-medium italic">
+      Clienți de Încredere
+    </h2>
+    <p class="text-center text-gray-600 mb-10 md:mb-14 max-w-2xl mx-auto">
+      Colaborări de succes cu branduri care și-au transformat prezența digitală
+    </p>
+  </div>
+
+  <div class="clients-scroll-wrapper">
+    <div class="clients-track">
+      {[...clients, ...clients].map((c) => (
+        <div class="client-logo">
+          <div class="logo-wrapper">
+            <img
+              src={`${import.meta.env.BASE_URL}img/${c.img}`}
+              alt={c.alt}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
