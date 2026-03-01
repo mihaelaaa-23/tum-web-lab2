@@ -520,3 +520,7 @@
 @media (min-width: 641px) {
   .header-navbar { position: sticky !important; }
 }
+
+@media (min-width: 768px) {
+  .md\:hidden { display: none !important; }
+}
