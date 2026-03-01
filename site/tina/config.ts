@@ -130,6 +130,110 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "reviews",
+        label: "Reviews Section",
+        path: "content/reviews",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "headline",
+            label: "Section Headline",
+          },
+          {
+            type: "string",
+            name: "subtext",
+            label: "Section Subtext",
+          },
+          {
+            type: "object",
+            name: "reviews",
+            label: "Reviews",
+            list: true,
+            fields: [
+              {
+                type: "string",
+                name: "name",
+                label: "Client Name",
+              },
+              {
+                type: "string",
+                name: "role",
+                label: "Client Role",
+              },
+              {
+                type: "string",
+                name: "quote",
+                label: "Quote",
+                ui: {
+                  component: "textarea",
+                },
+              },
+              {
+                type: "image",
+                name: "img",
+                label: "Client Image",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "contact",
+        label: "Contact Section",
+        path: "content/contact",
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false,
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "headline",
+            label: "Headline",
+          },
+          {
+            type: "string",
+            name: "subtext",
+            label: "Subtext",
+          },
+          {
+            type: "string",
+            name: "phone",
+            label: "Phone Number",
+          },
+          {
+            type: "string",
+            name: "phoneDisplay",
+            label: "Phone Display Text",
+          },
+          {
+            type: "string",
+            name: "email",
+            label: "Email Address",
+          },
+          {
+            type: "string",
+            name: "telegramHref",
+            label: "Telegram Link",
+          },
+          {
+            type: "string",
+            name: "telegramLabel",
+            label: "Telegram Button Label",
+          },
+        ],
+      },
     ],
   },
 });
