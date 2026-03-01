@@ -1,0 +1,58 @@
+---
+---
+<section id="contact" class="bg-white py-8 md:py-10 scroll-mt-20">
+  <div class="container max-w-[1100px] mx-auto px-4">
+    <div class="bg-white p-6 md:p-10 rounded-3xl text-center shadow-lg max-w-[700px] mx-auto border border-gray-100">
+      <h2 class="font-accent text-3xl md:text-5xl text-primary mb-3 md:mb-4 font-medium italic">
+        Contactează-mă
+      </h2>
+      <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-5">
+        Ești gata să îți transformi prezența online?
+      </p>
+      <div class="flex flex-col gap-2 md:gap-3 mb-5 md:mb-6">
+        <a href="tel:+37362004096"
+          class="text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary">
+          <strong>Telefon:</strong> 062 004 096
+        </a>
+        <a href="mailto:ciobanuirina.smm@gmail.com"
+          class="contact-email text-sm sm:text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary">
+          <strong>Email:</strong> ciobanuirina.smm@gmail.com
+        </a>
+      </div>
+      <a href="https://t.me/irinuc27" class="telegram-button">
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+            </svg>
+          </div>
+        </div>
+        <span>Trimite un mesaj pe Telegram</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Animated Mascot -->
+<div class="mascot-container" id="mascot" style="cursor: pointer;" title="Contactează-mă!">
+  <div class="mascot-bubble">
+    <p>Bună! 👋 Hai să creștem împreună prezența ta online!</p>
+  </div>
+  <img src={`${import.meta.env.BASE_URL}img/mascot.svg`} class="mascot" alt="Mascot" />
+</div>
+
+<script>
+  const mascot = document.getElementById('mascot');
+  if (mascot) {
+    mascot.addEventListener('click', () => {
+      const contactSection = document.querySelector('#contact');
+      if (contactSection) {
+        const navbar = document.querySelector('.header-navbar') as HTMLElement;
+        const offset = navbar ? navbar.offsetHeight : 0;
+        const top = contactSection.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  }
+</script>
