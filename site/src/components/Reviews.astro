@@ -1,0 +1,59 @@
+---
+const starPath = "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z";
+
+const reviews = [
+  { img: "client-5.png", name: "Moldpack", role: "Producător de ambalaje", quote: "Colaborarea cu Irina a fost impecabilă. Strategia a fost clară, iar rezultatele s-au văzut rapid." },
+  { img: "client-6.png", name: "GarduriMD", role: "Companie de construcții", quote: "Vizibilitate crescută și cereri constante. Ne-a plăcut atenția la detalii și ritmul de lucru." },
+  { img: "client-7.png", name: "Proimobil", role: "Imobiliare", quote: "Soluții complete și atenție la detalii. Proiectul a fost livrat la timp și peste așteptări." },
+  { img: "client-2.png", name: "XTD.md", role: "Tehnologie și software", quote: "Comunicare foarte bună și livrare constantă. Am văzut creștere reală la engagement și reach." },
+  { img: "client-8.png", name: "russrent", role: "Servicii de închirieri auto", quote: "Am primit un plan clar și rezultate măsurabile. Colaborarea a fost eficientă și bine organizată." },
+  { img: "client-11.png", name: "BiDent", role: "Clinică stomatologică", quote: "Mesajul nostru a ajuns la clienții potriviți. Campaniile au fost creative și bine targetate." },
+];
+---
+
+<section id="reviews" class="bg-light py-8 md:py-12 scroll-mt-20">
+  <div class="container max-w-[1100px] mx-auto px-4">
+    <h2 class="font-accent text-primary italic text-3xl md:text-5xl text-center mb-3 font-medium">
+      Ce spun clienții
+    </h2>
+    <p class="text-center text-gray-600 mb-8 md:mb-10 max-w-[600px] mx-auto text-sm md:text-base">
+      Feedback real de la parteneri mulțumiți
+    </p>
+
+    <div class="reviews-shell">
+      <button class="reviews-nav prev" aria-label="Recenzia anterioara">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" />
+        </svg>
+      </button>
+
+      <div class="reviews-viewport">
+        <div class="reviews-track">
+          {reviews.map((r) => (
+            <article class="review-card stagger-item">
+              <div class="review-top">
+                <div class="review-avatar review-avatar-img">
+                  <img src={`${import.meta.env.BASE_URL}img/${r.img}`} alt={r.name} />
+                </div>
+                <div class="review-meta">
+                  <p class="review-name">{r.name}</p>
+                  <div class="review-stars" aria-label="5 stele">
+                    {Array(5).fill(null).map(() => (
+                      <svg viewBox="0 0 20 20" aria-hidden="true">
+                        <path d={starPath} />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p class="review-quote">"{r.quote}"</p>
+              <div class="review-divider"></div>
+              <p class="review-role">{r.role}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <button class="reviews-nav next" aria-label="Recenzia urmatoare">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 6
