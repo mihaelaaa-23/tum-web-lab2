@@ -1,170 +1,61 @@
 ---
+import servicesData from '../../content/services/index.json';
+
+const { headline, subtext, packages } = servicesData;
 ---
-<section id="services" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate"">
+
+<section id="services" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate">
   <div class="container max-w-[1100px] mx-auto px-4">
     <h2 class="font-accent text-primary italic text-3xl md:text-5xl text-center mb-4 font-medium">
-      Pachete SMM
+      {headline}
     </h2>
     <p class="text-center text-gray-600 mb-6 md:mb-8 max-w-[600px] mx-auto">
-      Soluții personalizate pentru fiecare business. Hai să discutăm ce se potrivește perfect pentru tine.
+      {subtext}
     </p>
     <div class="flex justify-center items-center gap-6 flex-wrap mt-6 md:mt-8">
-
-      <!-- SMM Standard -->
-      <div class="pkg-card stagger-item">
-        <div class="pkg-content">
-          <div class="pkg-back">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-back-content">
-              <span class="pkg-name">SMM Standard</span>
-              <span class="pkg-tagline">Social Media Esențial</span>
-            </div>
-          </div>
-          <div class="pkg-front">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-front-content">
-              <div class="pkg-front-top">
-                <small class="pkg-badge">Standard</small>
-                <span class="pkg-front-title">SMM Standard</span>
-                <div class="pkg-divider"></div>
+      {packages.map((pkg) => (
+        <div class="pkg-card stagger-item">
+          <div class="pkg-content">
+            <div class="pkg-back">
+              <div class="pkg-blobs">
+                <div class="pkg-blob"></div>
+                <div class="pkg-blob b2"></div>
+                <div class="pkg-blob b3"></div>
               </div>
-              <div class="pkg-bottom">
-                <ul class="pkg-features">
-                  <li>9 postări / lună</li>
-                  <li>2/3 Story pe zi</li>
-                  <li>Strategie & Plan</li>
-                </ul>
-                <a href="#contact" class="pkg-cta">Solicită o consultație</a>
+              <div class="pkg-back-content">
+                <span class="pkg-name">{pkg.name}</span>
+                <span class="pkg-tagline">{pkg.tagline}</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SMM Pro -->
-      <div class="pkg-card stagger-item">
-        <div class="pkg-content">
-          <div class="pkg-back">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-back-content">
-              <span class="pkg-name">SMM Pro</span>
-              <span class="pkg-tagline">Cel Mai Popular</span>
-            </div>
-          </div>
-          <div class="pkg-front">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-front-content">
-              <div class="pkg-front-top">
-                <small class="pkg-badge">Popular</small>
-                <span class="pkg-front-title">SMM Pro</span>
-                <div class="pkg-divider"></div>
+            <div class="pkg-front">
+              <div class="pkg-blobs">
+                <div class="pkg-blob"></div>
+                <div class="pkg-blob b2"></div>
+                <div class="pkg-blob b3"></div>
               </div>
-              <div class="pkg-bottom">
-                <ul class="pkg-features">
-                  <li>15 postări / lună</li>
-                  <li>2/3 Story pe zi</li>
-                  <li>Copywriting & Moderare</li>
-                </ul>
-                <a href="#contact" class="pkg-cta">Vreau ofertă</a>
+              <div class="pkg-front-content">
+                <div class="pkg-front-top">
+                  <small class="pkg-badge">{pkg.badge}</small>
+                  <span class="pkg-front-title">{pkg.name}</span>
+                  <div class="pkg-divider"></div>
+                </div>
+                <div class="pkg-bottom">
+                  {pkg.features && pkg.features.length > 0 ? (
+                    <ul class="pkg-features">
+                      {pkg.features.map((feature) => (
+                        <li>{feature}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p class="pkg-features-text">{pkg.featuresText}</p>
+                  )}
+                  <a href="#contact" class="pkg-cta">{pkg.ctaLabel}</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- TikTok Boost -->
-      <div class="pkg-card stagger-item">
-        <div class="pkg-content">
-          <div class="pkg-back">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-back-content">
-              <span class="pkg-name">TikTok Boost</span>
-              <span class="pkg-tagline">Creștere Virală</span>
-            </div>
-          </div>
-          <div class="pkg-front">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-front-content">
-              <div class="pkg-front-top">
-                <small class="pkg-badge">TikTok</small>
-                <span class="pkg-front-title">TikTok Boost</span>
-                <div class="pkg-divider"></div>
-              </div>
-              <div class="pkg-bottom">
-                <ul class="pkg-features">
-                  <li>Video zilnic (6/săpt)</li>
-                  <li>25 TikTok-uri / lună</li>
-                  <li>Plan de postări & Scenarii</li>
-                </ul>
-                <a href="#contact" class="pkg-cta">Hai să vorbim</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Personalizat -->
-      <div class="pkg-card stagger-item">
-        <div class="pkg-content">
-          <div class="pkg-back">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-back-content">
-              <span class="pkg-name">Personalizat</span>
-              <span class="pkg-tagline">100% Al Tău</span>
-            </div>
-          </div>
-          <div class="pkg-front">
-            <div class="pkg-blobs">
-              <div class="pkg-blob"></div>
-              <div class="pkg-blob b2"></div>
-              <div class="pkg-blob b3"></div>
-            </div>
-            <div class="pkg-front-content">
-              <div class="pkg-front-top">
-                <small class="pkg-badge">Custom</small>
-                <span class="pkg-front-title">Personalizat</span>
-                <div class="pkg-divider"></div>
-              </div>
-              <div class="pkg-bottom">
-                <p class="pkg-features-text">
-                  Strategie unică adaptată exact obiectivelor tale.<br />
-                  Hai să discutăm ce funcționează pentru businessul tău.
-                </p>
-                <a href="#contact" class="pkg-cta">Cere detalii</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      ))}
     </div>
   </div>
 </section>

@@ -1,0 +1,12 @@
+{
+  "headline": "Ce spun clienții",
+  "subtext": "Feedback real de la parteneri mulțumiți",
+  "reviews": [
+    { "name": "Moldpack", "role": "Producător de ambalaje", "quote": "Colaborarea cu Irina a fost impecabilă. Strategia a fost clară, iar rezultatele s-au văzut rapid.", "img": "/img/client-5.png" },
+    { "name": "GarduriMD", "role": "Companie de construcții", "quote": "Vizibilitate crescută și cereri constante. Ne-a plăcut atenția la detalii și ritmul de lucru.", "img": "/img/client-6.png" },
+    { "name": "Proimobil", "role": "Imobiliare", "quote": "Soluții complete și atenție la detalii. Proiectul a fost livrat la timp și peste așteptări.", "img": "/img/client-7.png" },
+    { "name": "XTD.md", "role": "Tehnologie și software", "quote": "Comunicare foarte bună și livrare constantă. Am văzut creștere reală la engagement și reach.", "img": "/img/client-2.png" },
+    { "name": "russrent", "role": "Servicii de închirieri auto", "quote": "Am primit un plan clar și rezultate măsurabile. Colaborarea a fost eficientă și bine organizată.", "img": "/img/client-8.png" },
+    { "name": "BiDent", "role": "Clinică stomatologică", "quote": "Mesajul nostru a ajuns la clienții potriviți. Campaniile au fost creative și bine targetate.", "img": "/img/client-11.png" }
+  ]
+}

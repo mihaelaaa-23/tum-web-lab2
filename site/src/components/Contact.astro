@@ -1,25 +1,29 @@
 ---
+import contactData from '../../content/contact/index.json';
+
+const { headline, subtext, phone, phoneDisplay, email, telegramHref, telegramLabel } = contactData;
 ---
-<section id="contact" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate"">
+
+<section id="contact" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate">
   <div class="container max-w-[1100px] mx-auto px-4">
     <div class="bg-white p-6 md:p-10 rounded-3xl text-center shadow-lg max-w-[700px] mx-auto border border-gray-100">
       <h2 class="font-accent text-3xl md:text-5xl text-primary mb-3 md:mb-4 font-medium italic">
-        Contactează-mă
+        {headline}
       </h2>
       <p class="text-sm md:text-base text-gray-600 mb-4 md:mb-5">
-        Ești gata să îți transformi prezența online?
+        {subtext}
       </p>
       <div class="flex flex-col gap-2 md:gap-3 mb-5 md:mb-6">
-        <a href="tel:+37362004096"
+        <a href={`tel:${phone}`}
           class="text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary">
-          <strong>Telefon:</strong> 062 004 096
+          <strong>Telefon:</strong> {phoneDisplay}
         </a>
-        <a href="mailto:ciobanuirina.smm@gmail.com"
+        <a href={`mailto:${email}`}
           class="contact-email text-sm sm:text-base md:text-xl font-semibold text-primary no-underline transition-colors hover:text-secondary">
-          <strong>Email:</strong> ciobanuirina.smm@gmail.com
+          <strong>Email:</strong> {email}
         </a>
       </div>
-      <a href="https://t.me/irinuc27" class="telegram-button">
+      <a href={telegramHref} class="telegram-button">
         <div class="svg-wrapper-1">
           <div class="svg-wrapper">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -28,13 +32,12 @@
             </svg>
           </div>
         </div>
-        <span>Trimite un mesaj pe Telegram</span>
+        <span>{telegramLabel}</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Animated Mascot -->
 <div class="mascot-container" id="mascot" style="cursor: pointer;" title="Contactează-mă!">
   <div class="mascot-bubble">
     <p>Bună! 👋 Hai să creștem împreună prezența ta online!</p>

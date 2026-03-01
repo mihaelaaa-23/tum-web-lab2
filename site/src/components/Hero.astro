@@ -1,27 +1,35 @@
 ---
+import heroData from '../../content/hero/index.json';
+
+const { headline, subtext, ctaLabel, ctaHref } = heroData;
 ---
-<section id="hero" class="py-8 md:py-10 min-h-[50vh] flex items-center bg-light scroll-animate"">
-  <div class="container max-w-[1100px] mx-auto px-4 flex justify-between items-center gap-6 md:gap-8 flex-col md:flex-row">
-    <div class="hero-content flex-[1.2] text-center w-full">
-      <h1 class="font-accent text-primary italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mb-4 font-medium px-2">
-        Branding care se vede.<br />Rezultate care se simt.
-      </h1>
-      <p class="text-sm sm:text-base max-w-[90%] md:max-w-[1000px] mx-auto my-3 md:my-4 text-gray-600 px-2">
-        Schimbăm strategiile vechi cu soluții moderne de Social Media.
-      </p>
-      <a href="#contact" class="cta-btn">
-        <span class="cta-circle" aria-hidden="true">
-          <span class="cta-icon arrow"></span>
-        </span>
-        <span class="cta-label">Vreau o ofertă</span>
-      </a>
-    </div>
-    <div class="hero-image flex-[0.8] w-full flex justify-center">
-      <img
-        src="/img/irina-portrait.png"
-        alt="Ciobanu Irina SMM"
-        class="w-[240px] sm:w-[300px] md:w-full max-w-[450px] grayscale"
-      />
+
+<section class="bg-light py-8 md:py-10 scroll-mt-20 scroll-animate">
+  <div class="container max-w-[1100px] mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 md:py-10">
+      <div class="flex-[1.2] flex flex-col my-3 md:my-4">
+        <h1 class="font-accent text-primary italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight font-medium animate-fade-in-up">
+          {headline}
+        </h1>
+        <p class="text-dark text-sm sm:text-base md:text-base leading-relaxed my-3 md:my-4 animate-fade-in-up delay-200 md:max-w-[450px]">
+          {subtext}
+        </p>
+        <div class="animate-scale-in delay-300">
+          <a href={ctaHref} class="cta-btn">
+            <div class="cta-circle">
+              <span class="cta-icon arrow"></span>
+            </div>
+            <span class="cta-label">{ctaLabel}</span>
+          </a>
+        </div>
+      </div>
+      <div class="flex-[0.8] flex justify-center items-center animate-slide-in-right delay-400">
+        <img
+          src={`${import.meta.env.BASE_URL}img/irina-portrait.png`}
+          alt="Ciobanu Irina SMM"
+          class="w-[240px] sm:w-[300px] grayscale"
+        />
+      </div>
     </div>
   </div>
 </section>
