@@ -1,0 +1,46 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .wing-left {
+      transform-origin: 60px 120px;
+      animation: wingFlapLeft 0.6s ease-in-out infinite;
+    }
+    .wing-right {
+      transform-origin: 140px 120px;
+      animation: wingFlapRight 0.6s ease-in-out infinite;
+    }
+    @keyframes wingFlapLeft {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-20deg); }
+    }
+    @keyframes wingFlapRight {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(20deg); }
+    }
+  </style>
+
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="60" ry="70" fill="#026E82" />
+
+  <!-- Head -->
+  <circle cx="100" cy="70" r="45" fill="#026E82" />
+
+  <!-- Eyes -->
+  <circle cx="85" cy="65" r="8" fill="white" />
+  <circle cx="115" cy="65" r="8" fill="white" />
+  <circle cx="87" cy="65" r="4" fill="#1a1a1a" />
+  <circle cx="117" cy="65" r="4" fill="#1a1a1a" />
+
+  <!-- Beak -->
+  <path d="M 100 75 L 110 85 L 100 80 Z" fill="#CDB181" />
+
+  <!-- Wings -->
+  <ellipse cx="60" cy="120" rx="25" ry="40" fill="#024959" class="wing-left" />
+  <ellipse cx="140" cy="120" rx="25" ry="40" fill="#024959" class="wing-right" />
+
+  <!-- Feet -->
+  <path d="M 85 180 L 80 195 M 85 180 L 90 195 M 85 180 L 85 195" stroke="#CDB181" stroke-width="3" stroke-linecap="round" />
+  <path d="M 115 180 L 110 195 M 115 180 L 120 195 M 115 180 L 115 195" stroke="#CDB181" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Heart accent -->
+  <path d="M 120 50 C 120 45, 125 42, 128 45 C 131 42, 136 45, 136 50 C 136 55, 128 62, 128 62 C 128 62, 120 55, 120 50 Z" fill="#CDB181" opacity="0.8" />
+</svg>
