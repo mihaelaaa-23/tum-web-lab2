@@ -1,19 +1,15 @@
 name: Deploy Astro to GitHub Pages
-
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,15 +35,11 @@ jobs:
       - name: Build Astro
         run: npm run build
         working-directory: site
-      - name: Build Astro
-        run: npm run build
-        working-directory: site
       - name: Disable Jekyll
         run: touch site/dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
