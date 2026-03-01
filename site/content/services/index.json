@@ -6,7 +6,12 @@
       "name": "SMM Standard",
       "badge": "Standard",
       "tagline": "Social Media Esențial",
-      "features": ["9 postări / lună", "2/3 Story pe zi", "Strategie & Plan"],
+      "features": [
+        "9 postări / lună",
+        "2/3 Story pe zi",
+        "Strategie & Plan",
+        "Copywriting & Moderare"
+      ],
       "featuresText": "",
       "ctaLabel": "Solicită o consultație"
     },
@@ -14,7 +19,11 @@
       "name": "SMM Pro",
       "badge": "Popular",
       "tagline": "Cel Mai Popular",
-      "features": ["15 postări / lună", "2/3 Story pe zi", "Copywriting & Moderare"],
+      "features": [
+        "15 postări / lună",
+        "2/3 Story pe zi",
+        "Copywriting & Moderare"
+      ],
       "featuresText": "",
       "ctaLabel": "Vreau ofertă"
     },
@@ -22,7 +31,11 @@
       "name": "TikTok Boost",
       "badge": "TikTok",
       "tagline": "Creștere Virală",
-      "features": ["Video zilnic (6/săpt)", "25 TikTok-uri / lună", "Plan de postări & Scenarii"],
+      "features": [
+        "Video zilnic (6/săpt)",
+        "25 TikTok-uri / lună",
+        "Plan de postări & Scenarii"
+      ],
       "featuresText": "",
       "ctaLabel": "Hai să vorbim"
     },
