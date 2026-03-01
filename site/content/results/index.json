@@ -1,0 +1,9 @@
+{
+  "headline": "Case-uri Recente & Active",
+  "subtext": "Transparență completă: vezi activitatea live a proiectelor noastre și rezultatele reale obținute pentru clienți.",
+  "cases": [
+    { "name": "Case Horay", "href": "https://vt.tiktok.com/ZSaWSHCSb", "thumb": "/img/thumb-horay.png", "category": "⚡️ Energie regenerabilă", "stat": "+3313 Urmăritori" },
+    { "name": "Garduri.md", "href": "https://vt.tiktok.com/ZSmDL6gmL/", "thumb": "/img/thumb-garduri.png", "category": "🏗️ Construcții", "stat": "+60 comenzi" },
+    { "name": "GMD Oils & Lubricants", "href": "https://vt.tiktok.com/ZSmDL3AyE/", "thumb": "/img/thumb-gmd.png", "category": "🏭 B2B Industrial", "stat": "Creștere organică" }
+  ]
+}
