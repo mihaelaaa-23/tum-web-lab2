@@ -11,11 +11,9 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
     "astro": "^5.17.1",
-    "tailwindcss": "^4.2.1",
-    "tinacms": "^3.5.1"
+    "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@tinacms/cli": "^2.1.7",
     "@types/node": "^25.3.3"
   }
 }
