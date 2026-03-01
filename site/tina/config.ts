@@ -15,6 +15,20 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [],
+    collections: [
+      {
+        name: "page",
+        label: "Pages",
+        path: "content/pages",
+        format: "json",
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+          },
+        ],
+      },
+    ],
   },
 });
