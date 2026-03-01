@@ -30,6 +30,8 @@ jobs:
       - name: Build Astro
         run: npm run build
         working-directory: site
+      - name: Disable Jekyll
+        run: touch site/dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site/dist
