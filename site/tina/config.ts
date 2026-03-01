@@ -234,6 +234,57 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "roi",
+        label: "ROI Section",
+        path: "content/roi",
+        format: "json",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "headline", label: "Headline" },
+          { type: "string", name: "subtext", label: "Subtext" },
+          { type: "string", name: "badgeText", label: "Badge Text" },
+          {
+            type: "object", name: "stats", label: "Stats", list: true,
+            fields: [
+              { type: "string", name: "value", label: "Value" },
+              { type: "string", name: "label", label: "Label" },
+            ],
+          },
+        ],
+      },
+      {
+        name: "results",
+        label: "Results Section",
+        path: "content/results",
+        format: "json",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "headline", label: "Headline" },
+          { type: "string", name: "subtext", label: "Subtext" },
+          {
+            type: "object", name: "cases", label: "Cases", list: true,
+            fields: [
+              { type: "string", name: "name", label: "Name" },
+              { type: "string", name: "href", label: "TikTok Link" },
+              { type: "image", name: "thumb", label: "Thumbnail" },
+              { type: "string", name: "category", label: "Category" },
+              { type: "string", name: "stat", label: "Stat" },
+            ],
+          },
+        ],
+      },
+      {
+        name: "clients",
+        label: "Clients Section",
+        path: "content/clients",
+        format: "json",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "headline", label: "Headline" },
+          { type: "string", name: "subtext", label: "Subtext" },
+        ],
+      },
     ],
   },
 });
