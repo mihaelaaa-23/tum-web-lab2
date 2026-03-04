@@ -1,7 +1,13 @@
 ---
-import reviewsData from '../../content/reviews/index.json';
+import sectionData from '../../content/reviews-section/index.json';
 
-const { headline, subtext, reviews } = reviewsData;
+const { headline, subtext } = sectionData;
+
+const reviewFiles = import.meta.glob('../../content/reviews/*.md', { eager: true });
+const reviews = Object.values(reviewFiles).map((mod: any) => ({
+  ...mod.frontmatter,
+  quote: mod.rawContent().trim(),
+}));
 
 const starPath = "M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z";
 const chevronLeft = "M15 6l-6 6 6 6";

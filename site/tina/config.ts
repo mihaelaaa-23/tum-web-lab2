@@ -94,6 +94,15 @@ export default defineConfig({
             name: "packages",
             label: "Packages",
             list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.name
+                  ? item.hidden
+                    ? `${item.name} (hidden)`
+                    : item.name
+                  : "Package",
+              }),
+            },
             fields: [
               {
                 type: "string",
@@ -126,14 +135,19 @@ export default defineConfig({
                 name: "ctaLabel",
                 label: "CTA Label",
               },
+              {
+                type: "boolean",
+                name: "hidden",
+                label: "Hide this package",
+              },
             ],
           },
         ],
       },
       {
-        name: "reviews",
-        label: "Reviews Section",
-        path: "content/reviews",
+        name: "reviewsSection",
+        label: "Reviews Section Settings",
+        path: "content/reviews-section",
         format: "json",
         ui: {
           allowedActions: {
@@ -152,36 +166,36 @@ export default defineConfig({
             name: "subtext",
             label: "Section Subtext",
           },
+        ],
+      },
+      {
+        name: "review",
+        label: "Reviews",
+        path: "content/reviews",
+        format: "md",
+        fields: [
           {
-            type: "object",
-            name: "reviews",
-            label: "Reviews",
-            list: true,
-            fields: [
-              {
-                type: "string",
-                name: "name",
-                label: "Client Name",
-              },
-              {
-                type: "string",
-                name: "role",
-                label: "Client Role",
-              },
-              {
-                type: "string",
-                name: "quote",
-                label: "Quote",
-                ui: {
-                  component: "textarea",
-                },
-              },
-              {
-                type: "image",
-                name: "img",
-                label: "Client Image",
-              },
-            ],
+            type: "string",
+            name: "name",
+            label: "Client Name",
+            required: true,
+          },
+          {
+            type: "string",
+            name: "role",
+            label: "Client Role / Company",
+            required: true,
+          },
+          {
+            type: "image",
+            name: "img",
+            label: "Client Image",
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Quote",
+            isBody: true,
           },
         ],
       },
@@ -246,9 +260,19 @@ export default defineConfig({
           { type: "string", name: "badgeText", label: "Badge Text" },
           {
             type: "object", name: "stats", label: "Stats", list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.label
+                  ? item.hidden
+                    ? `${item.label} (hidden)`
+                    : item.label
+                  : "Stat",
+              }),
+            },
             fields: [
               { type: "string", name: "value", label: "Value" },
               { type: "string", name: "label", label: "Label" },
+              { type: "boolean", name: "hidden", label: "Hide this stat" },
             ],
           },
         ],
@@ -264,12 +288,22 @@ export default defineConfig({
           { type: "string", name: "subtext", label: "Subtext" },
           {
             type: "object", name: "cases", label: "Cases", list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.name
+                  ? item.hidden
+                    ? `${item.name} (hidden)`
+                    : item.name
+                  : "Case",
+              }),
+            },
             fields: [
               { type: "string", name: "name", label: "Name" },
               { type: "string", name: "href", label: "TikTok Link" },
               { type: "image", name: "thumb", label: "Thumbnail" },
               { type: "string", name: "category", label: "Category" },
               { type: "string", name: "stat", label: "Stat" },
+              { type: "boolean", name: "hidden", label: "Hide this case" },
             ],
           },
         ],
