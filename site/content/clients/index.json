@@ -1,4 +1,18 @@
 {
   "headline": "Clienți de Încredere",
-  "subtext": "Colaborări de succes cu branduri care și-au transformat prezența digitală"
+  "subtext": "Colaborări de succes cu branduri care și-au transformat prezența digitală",
+  "clients": [
+    { "img": "/img/client-1.png", "alt": "Client 1" },
+    { "img": "/img/client-2.png", "alt": "Client 2" },
+    { "img": "/img/client-3.png", "alt": "Client 3" },
+    { "img": "/img/client-4.png", "alt": "Client 4" },
+    { "img": "/img/client-5.png", "alt": "Client 5" },
+    { "img": "/img/client-6.png", "alt": "Client 6" },
+    { "img": "/img/client-7.png", "alt": "Client 7" },
+    { "img": "/img/client-8.png", "alt": "Client 8" },
+    { "img": "/img/client-9.png", "alt": "Client 9" },
+    { "img": "/img/client-10.png", "alt": "Client 10" },
+    { "img": "/img/client-11.png", "alt": "Client 11" },
+    { "img": "/img/client-12.png", "alt": "Client 12" }
+  ]
 }

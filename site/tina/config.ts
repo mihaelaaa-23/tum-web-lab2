@@ -317,6 +317,23 @@ export default defineConfig({
         fields: [
           { type: "string", name: "headline", label: "Headline" },
           { type: "string", name: "subtext", label: "Subtext" },
+          {
+            type: "object", name: "clients", label: "Client Logos", list: true,
+            ui: {
+              itemProps: (item) => ({
+                label: item?.alt
+                  ? item.hidden
+                    ? `${item.alt} (hidden)`
+                    : item.alt
+                  : "Client",
+              }),
+            },
+            fields: [
+              { type: "image", name: "img", label: "Logo Image" },
+              { type: "string", name: "alt", label: "Alt Text (client name)" },
+              { type: "boolean", name: "hidden", label: "Hide this client" },
+            ],
+          },
         ],
       },
     ],
