@@ -13,7 +13,8 @@
         "Copywriting & Moderare"
       ],
       "featuresText": "",
-      "ctaLabel": "Solicită o consultație"
+      "ctaLabel": "Solicită o consultație",
+      "hidden": true
     },
     {
       "name": "SMM Pro",

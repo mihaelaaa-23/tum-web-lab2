@@ -1,7 +1,8 @@
 ---
 import servicesData from '../../content/services/index.json';
 
-const { headline, subtext, packages } = servicesData;
+const { headline, subtext, packages: allPackages } = servicesData;
+const packages = allPackages.filter((pkg: any) => !pkg.hidden);
 ---
 
 <section id="services" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate">

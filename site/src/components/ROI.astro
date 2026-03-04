@@ -1,6 +1,7 @@
 ---
 import roiData from '../../content/roi/index.json';
-const { headline, subtext, badgeText, stats } = roiData;
+const { headline, subtext, badgeText, stats: allStats } = roiData;
+const stats = allStats.filter((s: any) => !s.hidden);
 ---
 
 <section id="roi" class="bg-gradient-to-br from-[#026E82] to-[#024959] py-8 md:py-12 scroll-animate">

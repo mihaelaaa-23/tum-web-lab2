@@ -1,6 +1,7 @@
 ---
 import resultsData from '../../content/results/index.json';
-const { headline, subtext, cases } = resultsData;
+const { headline, subtext, cases: allCases } = resultsData;
+const cases = allCases.filter((c: any) => !c.hidden);
 ---
 
 <section id="results-video" class="bg-white py-8 md:py-10 scroll-mt-20 scroll-animate">
