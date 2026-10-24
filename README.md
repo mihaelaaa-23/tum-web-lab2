@@ -1,31 +1,41 @@
-# Social Media Management Landing Page
+# Irina SMM - Social Media Management Landing Page
 
-A modern, responsive landing page for a professional Social Media Management service showcasing SMM packages, results, and portfolio.
+Romanian-language, static landing page for Ciobanu Irina's SMM services: packages, results, journal, reviews and direct contact.
 
-## 🎯 About
+## Stack
 
-This landing page presents Ciobanu Irina's SMM services, featuring:
-- **Service Packages**: SMM Standard, SMM Pro, TikTok Boost, and custom solutions
-- **Real Results**: Proven growth metrics from previous campaigns
-- **Portfolio**: Video showcases of successful client projects
-- **Contact Information**: Direct communication channels for inquiries
+- Astro 5 (static output) in `site/`
+- Tailwind CSS 4 (via `@tailwindcss/vite`), design tokens in `site/src/styles/tokens.css`
+- TinaCMS for editing the JSON content in `site/content/`
+- Vitest (unit) and Playwright with axe (e2e, 4 viewport projects: 320, 768, 1024, 1440)
+- Hosting on GitHub Pages; Netlify deploy previews for the `redesign` branch
 
-## ✨ Features
+## Design
 
-- 📱 **Fully Responsive Design** - Optimized for desktop, tablet, and mobile devices
-- 🎨 **Modern UI/UX** - Clean design with professional color scheme
-- ⚡ **Fast Loading** - Vanilla HTML & CSS for optimal performance
-- 🎯 **Strategic Layout** - Focused on conversion and user engagement
-- 📊 **Results** - Highlighting real metrics and achievements
+Colors: teal `#026E82`, teal deep `#014E5C`, teal mist `#E4F0EF`, cream `#FBF7F1`, paper dot `#E9DFD3`, ink `#1E1715`, ink muted `#5D514B`, blush `#F2C9CF`, leopard tan `#C9935C`, leopard spot `#3B2418`.
 
-## 🛠️ Technologies
+Fonts (self-hosted via Fontsource, no Google Fonts requests): Gloock (display), Hanken Grotesk variable (body/UI), Caveat (short hand-written asides).
 
-- HTML5
-- CSS3 (Vanilla CSS with custom properties)
-- Google Fonts (Playfair Display & Funnel Display)
-- Responsive Design (Mobile-first approach)
+Motion is limited to scroll reveals, a one-time polaroid settle and a highlight draw-in, all disabled under `prefers-reduced-motion: reduce`.
 
-## 📸 Screenshots
+## Scripts
+
+Run from `site/`:
+
+- `npm run dev` - TinaCMS + Astro dev server
+- `npm run build` - optimize images and build to `site/dist`
+- `npm run preview` - serve the production build
+- `npm test` - unit tests, then e2e tests
+- `npm run test:unit` - Vitest only
+- `npm run test:e2e` - Playwright only (builds and previews the site automatically)
+
+## Preview flow
+
+Work happens on the `redesign` branch. Pushing it creates a Netlify deploy preview (noindex). Review the preview, then merge `redesign` into `main`; the GitHub Actions workflow publishes `main` to GitHub Pages.
+
+## Screenshots
+
+> These screenshots show the previous design (before the teal scrapbook redesign).
 
 ### Desktop View
 <img src="img/desktop-hero.png" alt="Desktop Hero Section" width="900">
@@ -39,28 +49,6 @@ This landing page presents Ciobanu Irina's SMM services, featuring:
 ### Tablet View
 <img src="img/tablet-view.png" alt="Tablet View" width="600">
 
-## 🚀 Live Demo
+## Live Demo
 
 **[View Live Demo →](https://mihaelaaa-23.github.io/tum-web-lab2/)**
-
-
-## 🎨 Color Palette
-
-- **Primary Color**: `#026E82` (Teal)
-- **Secondary Color**: `#CDB181` (Gold)
-- **Dark Color**: `#1a1a1a` (Near Black)
-- **Light Color**: `#fdfaf5` (Cream)
-
-## 📱 Responsive Breakpoints
-
-- Mobile: `max-width: 480px`
-- Tablet: `max-width: 768px`
-- Desktop: `768px+`
-
-## 🤝 Contributing
-
-This is a university project for the Web Programming course at TUM (Technical University of Moldova).
-
-## 📄 License
-
-This project is created for educational purposes as part of the Web Programming Laboratory Work #2.

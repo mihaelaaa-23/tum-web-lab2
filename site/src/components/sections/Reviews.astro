@@ -17,11 +17,12 @@ const reviews = Object.values(reviewFiles).map((mod: any) => ({
 ---
 <section id="recenzii" class="section scroll-mt-20 bg-teal-mist" aria-labelledby="reviews-heading">
   <div class="mx-auto max-w-[1100px] px-4">
-    <h2 id="reviews-heading" class="mb-4 text-center text-ink">{headline}</h2>
+    <h2 id="reviews-heading" class="reveal mb-4 text-center text-ink">{headline}</h2>
     <p class="mx-auto mb-10 max-w-[600px] text-center text-ink-muted">{subtext}</p>
 
     <div class="relative">
       <ul
+        role="list"
         data-reviews-track
         tabindex="0"
         aria-label="Lista de recenzii"

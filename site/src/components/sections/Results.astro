@@ -12,7 +12,7 @@ const tilt = [-2, 1.5, -1];
 ---
 <section id="rezultate" class="section scroll-mt-20 bg-teal-mist" aria-labelledby="results-heading">
   <div class="mx-auto max-w-[1100px] px-4">
-    <h2 id="results-heading" class="mb-3 text-center text-ink">{headline}</h2>
+    <h2 id="results-heading" class="reveal mb-3 text-center text-ink">{headline}</h2>
     <p class="mx-auto mb-10 max-w-2xl text-center text-ink-muted md:mb-14">{subtext}</p>
 
     <div class="mb-12 rounded-[10px] bg-teal-deep px-6 py-10 text-center text-white md:mb-16 md:px-12">
@@ -28,7 +28,7 @@ const tilt = [-2, 1.5, -1];
       </dl>
     </div>
 
-    <ul class="cases m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto p-0 pb-6 pt-4 md:grid md:grid-cols-3 md:justify-items-center md:overflow-visible md:pb-0">
+    <ul role="list" aria-label="Studii de caz" class="cases m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto p-0 pb-6 pt-4 md:grid md:grid-cols-3 md:justify-items-center md:overflow-visible md:pb-0">
       {cases.map((c: any, i: number) => (
         <li class="w-[220px] shrink-0 snap-center md:w-auto">
           <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.name}, deschide pe TikTok`}

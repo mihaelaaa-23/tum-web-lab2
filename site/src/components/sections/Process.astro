@@ -10,8 +10,8 @@ const { headline, steps } = data;
 ---
 <section id="proces" class="section scroll-mt-20 bg-cream" aria-labelledby="process-heading">
   <div class="mx-auto max-w-[1100px] px-4">
-    <h2 id="process-heading" class="mb-10 text-center text-ink md:mb-14">{headline}</h2>
-    <ol class="m-0 grid list-none gap-8 p-0 lg:grid-cols-4 lg:gap-10">
+    <h2 id="process-heading" class="reveal mb-10 text-center text-ink md:mb-14">{headline}</h2>
+    <ol role="list" class="m-0 grid list-none gap-8 p-0 lg:grid-cols-4 lg:gap-10">
       {steps.map((s: any, i: number) => (
         <li class="relative">
           <span class="mb-2 block font-display text-5xl leading-none text-teal" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
