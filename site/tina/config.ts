@@ -364,6 +364,24 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "process",
+        label: "Process Section",
+        path: "content/process",
+        format: "json",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "headline", label: "Headline" },
+          {
+            type: "object", name: "steps", label: "Steps", list: true,
+            ui: { itemProps: (item) => ({ label: item?.title || "Step" }) },
+            fields: [
+              { type: "string", name: "title", label: "Title" },
+              { type: "string", name: "text", label: "Text" },
+            ],
+          },
+        ],
+      },
     ],
   },
 });

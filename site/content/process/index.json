@@ -1,0 +1,9 @@
+{
+  "headline": "Cum lucrăm",
+  "steps": [
+    { "title": "Discuție", "text": "Îmi povestești despre business și ce vrei să obții." },
+    { "title": "Strategie", "text": "Analizez publicul și concurența și fac planul de conținut." },
+    { "title": "Creăm", "text": "Filmez, editez, scriu și postez. Tu te ocupi de business." },
+    { "title": "Raportăm", "text": "Lunar primești cifre clare: ce a mers și ce schimbăm." }
+  ]
+}
