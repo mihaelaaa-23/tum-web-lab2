@@ -26,10 +26,10 @@ const reviews = Object.values(reviewFiles).map((mod: any) => ({
         data-reviews-track
         tabindex="0"
         aria-label="Lista de recenzii"
-        class="m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto motion-safe:scroll-smooth p-0 px-2 py-6"
+        class="m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto motion-safe:scroll-smooth sm:scroll-px-2 p-0 px-2 py-6"
       >
         {reviews.map((r, i) => (
-          <li class="w-[85%] shrink-0 snap-center sm:w-[360px]" data-review-card>
+          <li class="w-[85%] shrink-0 snap-center sm:w-[360px] sm:snap-start" data-review-card>
             <figure class="relative m-0 h-full p-6 pt-8">
               <div
                 data-review-frame

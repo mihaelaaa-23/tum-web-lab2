@@ -7,6 +7,12 @@ test('reviews scroll with buttons', async ({ page }) => {
   const before = await t.evaluate((e) => e.scrollLeft);
   await page.getByRole('button', { name: 'Recenzia următoare' }).click();
   await expect.poll(() => t.evaluate((e) => e.scrollLeft)).toBeGreaterThan(before);
+  // wait for the smooth scroll to settle: prev scrolls relative to the live position
+  await t.evaluate((e) => new Promise<void>((res) => {
+    let last = -1, same = 0;
+    const tick = () => { same = e.scrollLeft === last ? same + 1 : 0; last = e.scrollLeft; same >= 5 ? res() : requestAnimationFrame(tick); };
+    tick();
+  }));
   await page.getByRole('button', { name: 'Recenzia anterioară' }).click();
   await expect.poll(() => t.evaluate((e) => e.scrollLeft)).toBeLessThanOrEqual(before + 1);
 });
