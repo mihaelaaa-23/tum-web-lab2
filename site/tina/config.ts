@@ -291,35 +291,6 @@ export default defineConfig({
         ],
       },
       {
-        name: "roi",
-        label: "ROI Section",
-        path: "content/roi",
-        format: "json",
-        ui: { allowedActions: { create: false, delete: false } },
-        fields: [
-          { type: "string", name: "headline", label: "Headline" },
-          { type: "string", name: "subtext", label: "Subtext" },
-          { type: "string", name: "badgeText", label: "Badge Text" },
-          {
-            type: "object", name: "stats", label: "Stats", list: true,
-            ui: {
-              itemProps: (item) => ({
-                label: item?.label
-                  ? item.hidden
-                    ? `${item.label} (hidden)`
-                    : item.label
-                  : "Stat",
-              }),
-            },
-            fields: [
-              { type: "string", name: "value", label: "Value" },
-              { type: "string", name: "label", label: "Label" },
-              { type: "boolean", name: "hidden", label: "Hide this stat" },
-            ],
-          },
-        ],
-      },
-      {
         name: "results",
         label: "Results Section",
         path: "content/results",
@@ -328,6 +299,21 @@ export default defineConfig({
         fields: [
           { type: "string", name: "headline", label: "Headline" },
           { type: "string", name: "subtext", label: "Subtext" },
+          {
+            type: "object", name: "featured", label: "Featured Case",
+            fields: [
+              { type: "string", name: "label", label: "Label" },
+              { type: "string", name: "headline", label: "Headline" },
+              {
+                type: "object", name: "stats", label: "Stats", list: true,
+                ui: { itemProps: (item) => ({ label: item?.label || "Stat" }) },
+                fields: [
+                  { type: "string", name: "value", label: "Value" },
+                  { type: "string", name: "label", label: "Label" },
+                ],
+              },
+            ],
+          },
           {
             type: "object", name: "cases", label: "Cases", list: true,
             ui: {
@@ -344,7 +330,7 @@ export default defineConfig({
               { type: "string", name: "href", label: "TikTok Link" },
               { type: "image", name: "thumb", label: "Thumbnail" },
               { type: "string", name: "category", label: "Category" },
-              { type: "string", name: "stat", label: "Stat" },
+              { type: "string", name: "note", label: "Caption (handwritten)" },
               { type: "boolean", name: "hidden", label: "Hide this case" },
             ],
           },

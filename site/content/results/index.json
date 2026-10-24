@@ -1,9 +1,18 @@
 {
-  "headline": "Case-uri Recente & Active",
+  "headline": "Rezultate",
   "subtext": "Transparență completă: vezi activitatea live a proiectelor noastre și rezultatele reale obținute pentru clienți.",
+  "featured": {
+    "label": "Studiu de caz · un client din retail, TikTok",
+    "headline": "€20k+ vânzări lunare din TikTok",
+    "stats": [
+      { "value": "€20k+", "label": "vânzări / lună" },
+      { "value": "7 zile", "label": "până la prima vânzare" },
+      { "value": "TikTok", "label": "canal principal" }
+    ]
+  },
   "cases": [
-    { "name": "Case Horay", "href": "https://vt.tiktok.com/ZSaWSHCSb", "thumb": "/img/thumb-horay.png", "category": "⚡️ Energie regenerabilă", "stat": "+3313 Urmăritori" },
-    { "name": "Garduri.md", "href": "https://vt.tiktok.com/ZSmDL6gmL/", "thumb": "/img/thumb-garduri.png", "category": "🏗️ Construcții", "stat": "+60 comenzi" },
-    { "name": "GMD Oils & Lubricants", "href": "https://vt.tiktok.com/ZSmDL3AyE/", "thumb": "/img/thumb-gmd.png", "category": "🏭 B2B Industrial", "stat": "Creștere organică" }
+    { "name": "Case Horay", "href": "https://vt.tiktok.com/ZSaWSHCSb", "thumb": "/img/thumb-horay.png", "category": "Energie regenerabilă", "note": "+3.313 urmăritori" },
+    { "name": "Garduri.md", "href": "https://vt.tiktok.com/ZSmDL6gmL/", "thumb": "/img/thumb-garduri.png", "category": "Construcții", "note": "+60 comenzi" },
+    { "name": "GMD Oils & Lubricants", "href": "https://vt.tiktok.com/ZSmDL3AyE/", "thumb": "/img/thumb-gmd.png", "category": "B2B Industrial", "note": "creștere organică" }
   ]
 }
