@@ -9,7 +9,14 @@ test('featured case and three cases', async ({ page }) => {
 
 test('case links have accessible names', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('link', { name: 'Garduri.md, deschide pe TikTok' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Garduri.md: +60 comenzi, deschide pe TikTok (filă nouă)' })).toBeVisible();
+});
+
+test('case link names keep the note and category/active text is still in the card', async ({ page }) => {
+  await page.goto('/');
+  const l = page.locator('#rezultate a[target="_blank"]').nth(1);
+  await expect(l).toContainText('Construcții');
+  await expect(l).toContainText('activ');
 });
 
 test('active state has text, not just color', async ({ page }) => {

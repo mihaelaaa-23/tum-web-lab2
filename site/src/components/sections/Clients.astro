@@ -10,7 +10,10 @@ const clients = allClients.filter((c: any) => !c.hidden);
     <h2 id="clients-heading" class="reveal mb-3 text-ink">{headline}</h2>
     <p class="mx-auto mb-10 max-w-2xl text-ink-muted md:mb-14">{subtext}</p>
   </div>
-  <div class="clients-marquee">
+  <div class="mb-4 flex justify-center">
+    <button type="button" data-marquee-toggle aria-pressed="false" class="clients-toggle min-h-11 rounded-[10px] border-2 border-teal px-4 text-sm font-semibold text-teal">Pauză</button>
+  </div>
+  <div class="clients-marquee" tabindex="0" role="group" aria-label="Logo-uri clienți — focus pentru pauză">
     <div class="clients-track" data-marquee-track>
       <ul aria-label="Clienți" class="clients-list">
         {clients.map((c: any) => (
@@ -38,6 +41,7 @@ const clients = allClients.filter((c: any) => !c.hidden);
     animation: clients-scroll 40s linear infinite;
   }
   .clients-marquee:hover .clients-track,
+  #trusted-clients[data-paused='true'] .clients-track,
   .clients-marquee:focus-within .clients-track {
     animation-play-state: paused;
   }
@@ -56,8 +60,20 @@ const clients = allClients.filter((c: any) => !c.hidden);
     to { transform: translateX(-50%); }
   }
   @media (prefers-reduced-motion: reduce) {
+    .clients-toggle { display: none; }
     .clients-track { animation: none; display: block; width: auto; max-width: 1100px; margin-inline: auto; padding-inline: 1rem; }
     .clients-list { flex-wrap: wrap; justify-content: center; padding-right: 0; row-gap: 2rem; }
     .clients-list-copy { display: none; }
   }
 </style>
+
+<script>
+  const section = document.getElementById('trusted-clients');
+  const btn = section?.querySelector<HTMLButtonElement>('[data-marquee-toggle]');
+  btn?.addEventListener('click', () => {
+    const paused = btn.getAttribute('aria-pressed') !== 'true';
+    btn.setAttribute('aria-pressed', String(paused));
+    btn.textContent = paused ? 'Pornește' : 'Pauză';
+    section?.setAttribute('data-paused', String(paused));
+  });
+</script>

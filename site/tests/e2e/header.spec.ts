@@ -13,14 +13,15 @@ test('menu opens, closes on Escape, restores focus', async ({ page }) => {
   await expect(page.locator('#mobile-nav')).toBeHidden();
 });
 
-test('menu link click closes the menu and restores focus', async ({ page }) => {
+test('menu link click closes the menu without stealing focus back to the toggle', async ({ page }) => {
   test.skip((page.viewportSize()?.width ?? 0) >= 768, 'mobile-only');
   await page.goto('/');
   const t = page.locator('#menu-toggle');
   await t.click();
   await page.locator('#mobile-nav a[href="#contact"]').first().click();
   await expect(t).toHaveAttribute('aria-expanded', 'false');
-  await expect(t).toBeFocused();
+  await page.waitForTimeout(100);
+  await expect(t).not.toBeFocused();
 });
 
 test('sticky CTA appears after hero', async ({ page }) => {

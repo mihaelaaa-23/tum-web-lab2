@@ -31,3 +31,12 @@ test('review frames are rotated but text is not', async ({ page }) => {
   expect(await quote.evaluate((e) => getComputedStyle(e).transform)).toBe('none');
   expect(await quote.evaluate((e) => getComputedStyle(e.closest('figure')!).transform)).toBe('none');
 });
+
+test('reviews carousel does not smooth-scroll under reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  const t = page.locator('[data-reviews-track]');
+  expect(await t.evaluate((e) => getComputedStyle(e).scrollBehavior)).toBe('auto');
+  await page.getByRole('button', { name: 'Recenzia următoare' }).click();
+  await expect.poll(() => t.evaluate((e) => e.scrollLeft)).toBeGreaterThan(0);
+});

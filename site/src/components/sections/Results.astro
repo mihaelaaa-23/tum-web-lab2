@@ -31,7 +31,7 @@ const tilt = [-2, 1.5, -1];
     <ul role="list" aria-label="Studii de caz" class="cases m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto p-0 pb-6 pt-4 md:grid md:grid-cols-3 md:justify-items-center md:overflow-visible md:pb-0">
       {cases.map((c: any, i: number) => (
         <li class="w-[220px] shrink-0 snap-center md:w-auto">
-          <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.name}, deschide pe TikTok`}
+          <a href={c.href} target="_blank" rel="noopener" aria-label={`${c.name}: ${c.note}, deschide pe TikTok (filă nouă)`}
             class="block text-ink no-underline">
             <Polaroid src={c.thumb} alt="" note={c.note} rotate={tilt[i % tilt.length]} width={200} height={300} />
             <p class="mt-4 text-center font-semibold">{c.name}</p>

@@ -67,7 +67,7 @@ const {
       if (!open && restoreFocus) setTimeout(() => toggle.focus(), 0);
     };
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
-    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false, true)));
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false, true);
     });

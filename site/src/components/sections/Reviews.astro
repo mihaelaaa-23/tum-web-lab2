@@ -26,7 +26,7 @@ const reviews = Object.values(reviewFiles).map((mod: any) => ({
         data-reviews-track
         tabindex="0"
         aria-label="Lista de recenzii"
-        class="m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth p-0 px-2 py-6"
+        class="m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto motion-safe:scroll-smooth p-0 px-2 py-6"
       >
         {reviews.map((r, i) => (
           <li class="w-[85%] shrink-0 snap-center sm:w-[360px]" data-review-card>
@@ -72,7 +72,7 @@ const reviews = Object.values(reviewFiles).map((mod: any) => ({
       const card = track.querySelector<HTMLElement>('[data-review-card]');
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       const width = (card?.offsetWidth ?? track.clientWidth) + gap;
-      track.scrollBy({ left: dir * width, behavior: 'smooth' });
+      track.scrollBy({ left: dir * width, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     };
     document.querySelector('[data-reviews-prev]')?.addEventListener('click', () => step(-1));
     document.querySelector('[data-reviews-next]')?.addEventListener('click', () => step(1));

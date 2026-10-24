@@ -30,6 +30,36 @@ test('marquee runs at 40s linear and pauses on hover', async ({ page }) => {
   expect(await track.evaluate(e => getComputedStyle(e).animationPlayState)).toBe('paused');
 });
 
+test('marquee pauses on keyboard focus and via the toggle button', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const track = page.locator('[data-marquee-track]');
+  const state = () => track.evaluate(e => getComputedStyle(e).animationPlayState);
+  expect(await state()).toBe('running');
+  await page.locator('.clients-marquee').focus();
+  expect(await state()).toBe('paused');
+  await page.locator('h1').focus().catch(() => {});
+  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+  expect(await state()).toBe('running');
+  const btn = page.locator('[data-marquee-toggle]');
+  await btn.scrollIntoViewIfNeeded();
+  await btn.click();
+  await expect(btn).toHaveAttribute('aria-pressed', 'true');
+  await page.mouse.move(0, 0);
+  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+  expect(await state()).toBe('paused');
+  await btn.click();
+  await page.mouse.move(0, 0);
+  await page.evaluate(() => (document.activeElement as HTMLElement)?.blur());
+  expect(await state()).toBe('running');
+});
+
+test('marquee toggle is hidden under reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('[data-marquee-toggle]')).toBeHidden();
+});
+
 test('marquee stops under reduced motion', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
