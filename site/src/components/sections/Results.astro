@@ -6,27 +6,33 @@ interface Props {
   data?: typeof resultsData;
 }
 const { data = resultsData } = Astro.props;
-const { headline, subtext, featured } = data;
-const cases = data.cases.filter((c: any) => !c.hidden);
+const { headline, subtext } = data;
+const featured = data.featured;
+const featuredStats = featured?.stats ?? [];
+const cases = (data.cases ?? []).filter((c: any) => !c.hidden);
 const tilt = [-2, 1.5, -1];
 ---
-<section id="rezultate" class="section scroll-mt-20 bg-teal-mist" aria-labelledby="results-heading">
+<section id="rezultate" class="section bg-teal-mist" aria-labelledby="results-heading">
   <div class="mx-auto max-w-[1100px] px-4">
     <h2 id="results-heading" class="reveal mb-3 text-center text-ink">{headline}</h2>
     <p class="mx-auto mb-10 max-w-2xl text-center text-ink-muted md:mb-14">{subtext}</p>
 
-    <div class="mb-12 rounded-[10px] bg-teal-deep px-6 py-10 text-center text-white md:mb-16 md:px-12">
-      <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-teal-mist">{featured.label}</p>
-      <h3 class="mb-8 font-display text-[clamp(1.75rem,4vw,2.5rem)] leading-tight tracking-[-0.02em]">{featured.headline}</h3>
-      <dl class="grid gap-6 sm:grid-cols-3">
-        {featured.stats.map((s: any) => (
-          <div>
-            <dt class="font-display text-4xl">{s.value}</dt>
-            <dd class="m-0 text-sm text-teal-mist">{s.label}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
+    {featured && (
+      <div class="mb-12 rounded-[10px] bg-teal-deep px-6 py-10 text-center text-white md:mb-16 md:px-12">
+        <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-teal-mist">{featured.label}</p>
+        <h3 class="mb-8 font-display text-[clamp(1.75rem,4vw,2.5rem)] leading-tight tracking-[-0.02em]">{featured.headline}</h3>
+        {featuredStats.length > 0 && (
+          <dl class="grid gap-6 sm:grid-cols-3">
+            {featuredStats.map((s: any) => (
+              <div class="flex flex-col">
+                <dt class="order-2 m-0 text-sm text-teal-mist">{s.label}</dt>
+                <dd class="m-0 order-1 font-display text-4xl">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    )}
 
     <ul role="list" aria-label="Studii de caz" class="cases m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto p-0 pb-6 pt-4 md:grid md:grid-cols-3 md:justify-items-center md:overflow-visible md:pb-0">
       {cases.map((c: any, i: number) => (

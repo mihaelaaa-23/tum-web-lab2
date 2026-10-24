@@ -1,12 +1,16 @@
 ---
 import doorsData from '../../../content/doors/index.json';
 
-const { doors } = doorsData;
+interface Props {
+  data?: typeof doorsData;
+}
+const { data = doorsData } = Astro.props;
+const doors = data.doors ?? [];
 const tones = ['bg-teal text-cream', 'bg-blush text-ink'];
 ---
 <nav aria-label="Alege-ți drumul" class="grid sm:grid-cols-2">
   {doors.map((d, i) => (
-    <a href={`#servicii-${d.tab}`} class:list={['flex min-h-14 items-center justify-between gap-4 px-4 py-4 md:px-10', tones[i]]}>
+    <a href={`#servicii-${d.tab}`} class:list={['flex min-h-14 items-center justify-between gap-4 px-4 py-4 md:px-10', tones[i % tones.length]]}>
       <span class="font-semibold">{d.label}<small class="mt-0.5 block text-xs font-normal">{d.sub}</small></span>
       <span aria-hidden="true">→</span>
     </a>

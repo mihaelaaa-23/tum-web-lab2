@@ -15,7 +15,7 @@ import Contact from '../components/sections/Contact.astro';
 import contact from '../../content/contact/index.json';
 import journal from '../../content/journal/index.json';
 
-const showJournal = journal.handle.trim() !== '';
+const showJournal = (journal.handle ?? '').trim().replace(/^@+/, '').trim() !== '';
 const allLinks = [
   { label: 'Servicii', href: '#servicii' },
   { label: 'Rezultate', href: '#rezultate' },
