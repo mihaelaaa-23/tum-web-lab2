@@ -7,7 +7,7 @@ const m = { '/img/a.png': { width: 1114, height: 1140, variants: [480, 960, 1114
 
 test('srcset lists every variant', () => {
   expect(srcsetFor('/img/a.png', 'webp', m)).toBe(
-    '/img/_opt/a-480.webp 480w, /img/_opt/a-960.webp 960w, /img/_opt/a-1114.webp 1114w',
+    '/img/_opt/a-png-480.webp 480w, /img/_opt/a-png-960.webp 960w, /img/_opt/a-png-1114.webp 1114w',
   );
 });
 

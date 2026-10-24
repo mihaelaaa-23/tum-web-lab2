@@ -18,9 +18,17 @@ test('handles case, spaces and svg', async () => {
   expect(man['/img/wide.PNG'].variants).toEqual([480, 600]);
   expect(man['/img/small.jpeg'].variants).toEqual([300]);
   expect(man['/img/with space.png'].variants).toEqual([200]);
-  expect(existsSync(join(tmp, 'with-space-200.webp'))).toBe(true);
-  expect(existsSync(join(tmp, 'wide-600.avif'))).toBe(true);
+  expect(existsSync(join(tmp, 'with-space-png-200.webp'))).toBe(true);
+  expect(existsSync(join(tmp, 'wide-png-600.avif'))).toBe(true);
   expect(man['/img/logo.svg']).toBeUndefined();
+});
+
+test('recurses into subfolders, sanitizes names, survives corrupt files, honors EXIF', async () => {
+  const man = await optimizeImages(fixtures, tmp);
+  expect(man['/img/sub/Deep,Pic#1.jpg'].variants).toEqual([480, 700]);
+  expect(existsSync(join(tmp, 'sub-deep-pic-1-jpg-480.avif'))).toBe(true);
+  expect(man['/img/corrupt.png']).toBeUndefined();
+  expect(man['/img/rotated.jpg']).toMatchObject({ width: 300, height: 700 });
 });
 
 test('is idempotent', async () => {
