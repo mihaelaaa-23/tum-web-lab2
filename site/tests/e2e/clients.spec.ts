@@ -35,4 +35,12 @@ test('marquee stops under reduced motion', async ({ page }) => {
   await page.goto('/');
   const anim = await page.locator('[data-marquee-track]').evaluate(e => getComputedStyle(e).animationName);
   expect(anim).toBe('none');
+  // static grid: all visible logos stay inside the viewport and wrap onto several rows
+  const list = page.locator('ul[aria-label="Clienți"]');
+  const dims = await list.evaluate(e => ({ sw: e.scrollWidth, cw: e.clientWidth }));
+  expect(dims.sw).toBeLessThanOrEqual(dims.cw);
+  const vw = page.viewportSize()!.width;
+  const boxes = await list.locator('img').evaluateAll(els => els.map(e => { const r = e.getBoundingClientRect(); return { l: r.left, r: r.right, t: Math.round(r.top) }; }));
+  for (const b of boxes) { expect(b.l).toBeGreaterThanOrEqual(0); expect(b.r).toBeLessThanOrEqual(vw); }
+  if (vw <= 400) expect(new Set(boxes.map(b => b.t)).size).toBeGreaterThan(1);
 });
