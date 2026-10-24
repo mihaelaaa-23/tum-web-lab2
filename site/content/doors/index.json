@@ -1,0 +1,6 @@
+{
+  "doors": [
+    { "label": "Am o afacere locală", "sub": "Cafenea, salon, magazin: mă ocup eu de tot", "tab": "local" },
+    { "label": "Sunt un brand în creștere", "sub": "TikTok, UGC și campanii care vând", "tab": "brand" }
+  ]
+}

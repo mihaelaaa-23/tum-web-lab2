@@ -28,7 +28,10 @@ test('sticky CTA appears after hero', async ({ page }) => {
   await page.goto('/');
   const s = page.locator('[data-sticky-cta]');
   await expect(s).not.toHaveAttribute('data-visible', 'true');
-  await page.locator('#servicii').scrollIntoViewIfNeeded();
+  await page.evaluate(() => {
+    const r = document.getElementById('hero')!.getBoundingClientRect();
+    window.scrollTo(0, window.scrollY + r.bottom + 1);
+  });
   await expect(s).toHaveAttribute('data-visible', 'true');
 });
 

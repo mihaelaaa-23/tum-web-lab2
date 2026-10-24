@@ -1,1 +1,19 @@
-{"headline":"Branding care se vede. Rezultate care se simt.","subtext":"Schimbăm strategiile vechi cu soluții moderne de Social Media.","ctaLabel":"Vreau o ofertă","ctaHref":"#contact"}
+{
+  "handNote": "hei, eu sunt Irina ♡",
+  "headlineBefore": "Fac brandul tău ",
+  "headlineHighlight": "să fie văzut.",
+  "headlineAfter": " Și cumpărat.",
+  "subtext": "SMM ziua, content creator restul timpului. Știu ce se uită oamenii pe TikTok pentru că îl fac și eu.",
+  "ctaLabel": "Scrie-mi →",
+  "ctaHref": "#contact",
+  "portrait": "/img/irina-portrait.png",
+  "stats": [
+    { "value": "€20k+", "label": "vânzări / lună din TikTok" },
+    { "value": "+3.3k", "label": "urmăritori pentru Horay" },
+    { "value": "7 zile", "label": "până la prima vânzare" }
+  ],
+  "polaroids": [
+    { "img": "/img/thumb-horay.png", "note": "Horay ⚡", "alt": "Video TikTok pentru Horay" },
+    { "img": "/img/thumb-garduri.png", "note": "+60 comenzi!", "alt": "Video TikTok pentru Garduri.md" }
+  ]
+}

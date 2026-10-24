@@ -1,0 +1,42 @@
+---
+import heroData from '../../../content/hero/index.json';
+import OptimizedImg from '../primitives/OptimizedImg.astro';
+import Polaroid from '../primitives/Polaroid.astro';
+import TornPaper from '../primitives/TornPaper.astro';
+import Leopard from '../primitives/Leopard.astro';
+import Highlight from '../primitives/Highlight.astro';
+import HandNote from '../primitives/HandNote.astro';
+
+const { handNote, headlineBefore, headlineHighlight, headlineAfter, subtext, ctaLabel, ctaHref, portrait, stats, polaroids } = heroData;
+---
+<section id="hero" class="paper-dots grid overflow-hidden md:min-h-[560px] md:grid-cols-[1.1fr_0.9fr]">
+  <div class="relative z-10 order-2 flex flex-col justify-between gap-8 px-4 pt-6 pb-8 md:order-1 md:gap-10 md:px-10 md:pt-12 md:pb-8">
+    <div>
+      <HandNote>{handNote}</HandNote>
+      <h1 class="mt-1 mb-4 font-display">{headlineBefore}<Highlight>{headlineHighlight}</Highlight>{headlineAfter}</h1>
+      <p class="mb-6 max-w-[34ch] text-ink-muted">{subtext}</p>
+      <a href={ctaHref} class="inline-flex min-h-12 items-center rounded-[10px] bg-teal px-6 font-semibold text-cream">{ctaLabel}</a>
+    </div>
+    <dl class="m-0 grid grid-cols-3 gap-3 md:flex md:gap-9">
+      {stats.map((s) => (
+        <div data-stat>
+          <dd class="m-0 font-display text-2xl text-teal md:text-[1.7rem]">{s.value}</dd>
+          <dt class="text-xs text-ink-muted">{s.label}</dt>
+        </div>
+      ))}
+    </dl>
+  </div>
+  <div class="relative order-1 h-[340px] md:order-2 md:h-auto">
+    <TornPaper class="absolute inset-x-[6%] top-[18%] bottom-0 md:left-[70px] md:right-[30px] md:top-[70px]" />
+    <Leopard size={110} class="absolute top-4 right-2 md:top-6 md:right-1.5" />
+    <div class="absolute inset-y-0 right-[12%] z-[2] flex items-end">
+      <OptimizedImg src={portrait} alt="Irina Ciobanu, specialist SMM și creator de conținut" sizes="(min-width: 768px) 40vw, 80vw" loading="eager" fetchpriority="high" class="block h-[94%] max-h-full w-auto object-contain" />
+    </div>
+    <div class="absolute top-16 left-2 z-[4] md:-left-2.5 md:top-[60px]">
+      <Polaroid src={polaroids[0].img} alt={polaroids[0].alt} note={polaroids[0].note} rotate={-6} width={96} height={120} class="md:[&>div]:!w-[120px] md:[&>div]:!h-[150px]" />
+    </div>
+    <div class="absolute right-3.5 bottom-7 z-[4] hidden md:block">
+      <Polaroid src={polaroids[1].img} alt={polaroids[1].alt} note={polaroids[1].note} rotate={5} width={110} height={140} />
+    </div>
+  </div>
+</section>
