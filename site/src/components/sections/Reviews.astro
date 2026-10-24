@@ -29,15 +29,19 @@ const reviews = Object.values(reviewFiles).map((mod: any) => ({
       >
         {reviews.map((r, i) => (
           <li class="w-[85%] shrink-0 snap-center sm:w-[360px]" data-review-card>
-            <figure
-              class:list={['relative m-0 h-full rounded-[10px] bg-cream p-6 pt-8', i % 2 === 0 ? 'rotate-2' : '-rotate-2']}
-              style="box-shadow: var(--shadow-polaroid)"
-            >
-              <Tape class="left-1/2 top-[-11px] -translate-x-1/2" />
-              <blockquote class="m-0 text-ink">
+            <figure class="relative m-0 h-full p-6 pt-8">
+              <div
+                data-review-frame
+                aria-hidden="true"
+                class:list={['absolute inset-0 rounded-[10px] bg-cream', i % 2 === 0 ? 'rotate-2' : '-rotate-2']}
+                style="box-shadow: var(--shadow-polaroid)"
+              >
+                <Tape class="left-1/2 top-[-11px] -translate-x-1/2" />
+              </div>
+              <blockquote class="relative m-0 text-ink">
                 <p class="m-0">“{r.quote}”</p>
               </blockquote>
-              <figcaption class="mt-6 flex items-center gap-3">
+              <figcaption class="relative mt-6 flex items-center gap-3">
                 <OptimizedImg src={r.img} alt="" sizes="48px" class="size-12 rounded-full bg-white object-contain" />
                 <span>
                   <span class="block font-semibold text-ink">{r.name}</span>

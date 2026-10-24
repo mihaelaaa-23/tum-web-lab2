@@ -22,3 +22,12 @@ test('contact: three channels, no phone, no mascot', async ({ page }) => {
   await expect(page.getByText('Telefon')).toHaveCount(0);
   await expect(page.locator('img[src*="mascot"]')).toHaveCount(0);
 });
+
+test('review frames are rotated but text is not', async ({ page }) => {
+  await page.goto('/');
+  const frame = page.locator('[data-review-frame]').first();
+  const quote = page.locator('[data-reviews-track] blockquote').first();
+  expect(await frame.evaluate((e) => { const c = getComputedStyle(e); return c.rotate !== 'none' || c.transform !== 'none'; })).toBe(true);
+  expect(await quote.evaluate((e) => getComputedStyle(e).transform)).toBe('none');
+  expect(await quote.evaluate((e) => getComputedStyle(e.closest('figure')!).transform)).toBe('none');
+});
