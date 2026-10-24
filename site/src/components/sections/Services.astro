@@ -95,6 +95,17 @@ const tabs = [
   fromHash(true);
   window.addEventListener('hashchange', () => fromHash(true));
 
+  // Door links re-clicked while the hash already matches fire no hashchange: handle them directly.
+  document.addEventListener('click', (e) => {
+    const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="#servicii-"]');
+    const audience = link && audienceFromHash(link.getAttribute('href') ?? '');
+    if (!link || !audience) return;
+    e.preventDefault();
+    if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+    select(audience);
+    document.getElementById('servicii')?.scrollIntoView();
+  });
+
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => select(tab.dataset.audience as Audience));
     tab.addEventListener('keydown', (e) => {

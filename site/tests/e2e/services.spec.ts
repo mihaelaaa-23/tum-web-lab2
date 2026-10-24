@@ -45,8 +45,30 @@ test('hidden package not rendered; featuresText fallback; popular sticker', asyn
   await expect(page.locator('#panel-local')).toContainText('cel mai ales');
 });
 
-test('no horizontal overflow in services', async ({ page }) => {
-  await page.goto('/#servicii-local');
-  const over = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
-  expect(over).toBe(false);
+test('re-clicking the same door after switching tabs reselects and scrolls', async ({ page }) => {
+  await page.goto('/');
+  const brandDoor = page.getByRole('link', { name: /Sunt un brand în creștere/ });
+  await brandDoor.click();
+  await expect(page.locator('#tab-brand')).toHaveAttribute('aria-selected', 'true');
+  await page.locator('#tab-local').click();
+  await expect(page.locator('#tab-local')).toHaveAttribute('aria-selected', 'true');
+  // let the smooth scroll from the first door click settle before jumping back up
+  let prev = -1;
+  await expect.poll(async () => { const y = await page.evaluate(() => window.scrollY); const done = y === prev; prev = y; return done; }).toBe(true);
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await brandDoor.click();
+  await expect(page.locator('#tab-brand')).toHaveAttribute('aria-selected', 'true');
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(0);
+});
+
+test('no horizontal overflow at 320px on either tab', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/');
+  for (const id of ['local', 'brand']) {
+    await page.locator(`#tab-${id}`).click();
+    await expect(page.locator(`#panel-${id}`)).toBeVisible();
+    const over = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    expect(over, `overflow on ${id} tab`).toBe(false);
+  }
 });
