@@ -1,0 +1,44 @@
+---
+interface Props {
+  href: string;
+}
+const { href } = Astro.props;
+---
+<a
+  href={href}
+  data-sticky-cta
+  data-visible="false"
+  tabindex="-1"
+  aria-hidden="true"
+  class="sticky-cta fixed inset-x-4 bottom-4 z-40 flex min-h-12 items-center justify-center rounded-[10px] bg-teal px-5 font-semibold text-cream md:hidden"
+>Scrie-mi pe Telegram</a>
+<style>
+  .sticky-cta {
+    transform: translateY(150%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
+  }
+  .sticky-cta[data-visible='true'] {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.25s ease;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sticky-cta,
+    .sticky-cta[data-visible='true'] {
+      transition: none;
+    }
+  }
+</style>
+<script>
+  const cta = document.querySelector<HTMLElement>('[data-sticky-cta]');
+  const hero = document.getElementById('hero');
+  if (cta && hero) {
+    new IntersectionObserver(([entry]) => {
+      const visible = !entry.isIntersecting;
+      cta.dataset.visible = String(visible);
+      cta.setAttribute('aria-hidden', String(!visible));
+      cta.tabIndex = visible ? 0 : -1;
+    }).observe(hero);
+  }
+</script>

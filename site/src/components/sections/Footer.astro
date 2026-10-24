@@ -1,0 +1,16 @@
+---
+import contact from '../../../content/contact/index.json';
+---
+<footer class="bg-teal-deep text-cream">
+  <div class="mx-auto flex max-w-[1100px] flex-col gap-6 px-4 py-10 pb-24 md:flex-row md:items-center md:justify-between md:pb-10">
+    <div>
+      <p class="font-display text-xl">Irina Ciobanu</p>
+      <p class="text-sm">SMM ziua, restul timpului creez ✨</p>
+    </div>
+    <ul class="flex gap-6 font-semibold">
+      <li><a class="inline-flex min-h-11 items-center underline underline-offset-4" href={contact.instagramHref}>Instagram</a></li>
+      <li><a class="inline-flex min-h-11 items-center underline underline-offset-4" href={contact.telegramHref}>Telegram</a></li>
+    </ul>
+    <small>© {new Date().getFullYear()} Irina Ciobanu</small>
+  </div>
+</footer>

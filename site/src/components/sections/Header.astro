@@ -1,0 +1,75 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+interface Props {
+  links?: Link[];
+}
+const {
+  links = [
+    { label: 'Servicii', href: '#servicii' },
+    { label: 'Rezultate', href: '#rezultate' },
+    { label: 'Jurnal', href: '#jurnal' },
+    { label: 'Contact', href: '#contact' },
+  ],
+} = Astro.props;
+---
+<header id="site-header" class="sticky top-0 z-50 h-[72px] bg-cream border-b border-transparent transition-colors">
+  <div class="mx-auto flex h-full max-w-[1100px] items-center justify-between px-4">
+    <a href="#hero" class="font-display text-xl text-ink min-h-11 inline-flex items-center">Irina Ciobanu</a>
+    <nav aria-label="Principal" class="hidden md:flex items-center gap-6 text-sm font-semibold">
+      {links.map((l) => (
+        <a href={l.href} class="inline-flex min-h-11 items-center text-ink hover:text-teal">{l.label}</a>
+      ))}
+      <a href="#contact" class="inline-flex min-h-11 items-center rounded-[10px] bg-teal px-5 text-cream hover:bg-teal-deep">Scrie-mi</a>
+    </nav>
+    <button
+      id="menu-toggle"
+      type="button"
+      class="md:hidden inline-flex h-11 w-11 items-center justify-center text-ink"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Meniu</span>
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </div>
+  <nav id="mobile-nav" aria-label="Meniu mobil" hidden class="md:hidden absolute inset-x-0 top-full bg-cream border-b border-paper-dot px-4 pb-4">
+    <ul class="flex flex-col">
+      {links.map((l) => (
+        <li><a href={l.href} class="flex min-h-11 items-center font-semibold text-ink">{l.label}</a></li>
+      ))}
+      <li class="pt-2"><a href="#contact" class="flex min-h-11 items-center justify-center rounded-[10px] bg-teal px-5 font-semibold text-cream">Scrie-mi</a></li>
+    </ul>
+  </nav>
+</header>
+<style>
+  #site-header[data-scrolled='true'] {
+    border-bottom-color: var(--color-paper-dot);
+  }
+</style>
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('mobile-nav');
+
+  const onScroll = () => header?.setAttribute('data-scrolled', String(window.scrollY > 8));
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  if (toggle && nav) {
+    const setOpen = (open: boolean, restoreFocus = false) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.hidden = !open;
+      if (!open && restoreFocus) setTimeout(() => toggle.focus(), 0);
+    };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false, true)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false, true);
+    });
+  }
+</script>

@@ -20,6 +20,7 @@
 @layer base {
   html {
     background-color: var(--color-cream);
+    scroll-padding-top: 72px;
   }
   @media (prefers-reduced-motion: no-preference) {
     html {

@@ -1,21 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/sections/Header.astro';
+import Footer from '../components/sections/Footer.astro';
+import StickyCta from '../components/sections/StickyCta.astro';
 import Hero from '../components/Hero.astro';
-import MobileCTA from '../components/MobileCTA.astro';
 import Services from '../components/Services.astro';
 import ROI from '../components/ROI.astro';
 import Results from '../components/Results.astro';
 import Reviews from '../components/Reviews.astro';
 import Clients from '../components/Clients.astro';
 import Contact from '../components/Contact.astro';
+import contact from '../../content/contact/index.json';
+
+const links = [
+  { label: 'Servicii', href: '#servicii' },
+  { label: 'Rezultate', href: '#rezultate' },
+  { label: 'Jurnal', href: '#jurnal' },
+  { label: 'Contact', href: '#contact' },
+];
 ---
 <BaseLayout>
+  <Header slot="header" links={links} />
   <Hero />
-  <MobileCTA />
   <Services />
   <ROI />
   <Results />
   <Reviews />
   <Clients />
   <Contact />
+  <Footer slot="footer" />
+  <StickyCta slot="after" href={contact.telegramHref} />
 </BaseLayout>
