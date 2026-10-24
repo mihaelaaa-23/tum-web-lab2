@@ -1,0 +1,75 @@
+---
+import sectionData from '../../../content/reviews-section/index.json';
+import OptimizedImg from '../primitives/OptimizedImg.astro';
+import Tape from '../primitives/Tape.astro';
+
+interface Props {
+  data?: { headline: string; subtext: string };
+}
+const { data = sectionData } = Astro.props;
+const { headline, subtext } = data;
+
+const reviewFiles = import.meta.glob('../../../content/reviews/*.md', { eager: true });
+const reviews = Object.values(reviewFiles).map((mod: any) => ({
+  ...mod.frontmatter,
+  quote: mod.rawContent().trim(),
+}));
+---
+<section id="recenzii" class="section scroll-mt-20 bg-teal-mist" aria-labelledby="reviews-heading">
+  <div class="mx-auto max-w-[1100px] px-4">
+    <h2 id="reviews-heading" class="mb-4 text-center text-ink">{headline}</h2>
+    <p class="mx-auto mb-10 max-w-[600px] text-center text-ink-muted">{subtext}</p>
+
+    <div class="relative">
+      <ul
+        data-reviews-track
+        tabindex="0"
+        aria-label="Lista de recenzii"
+        class="m-0 flex list-none snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth p-0 px-2 py-6"
+      >
+        {reviews.map((r, i) => (
+          <li class="w-[85%] shrink-0 snap-center sm:w-[360px]" data-review-card>
+            <figure
+              class:list={['relative m-0 h-full rounded-[10px] bg-cream p-6 pt-8', i % 2 === 0 ? 'rotate-2' : '-rotate-2']}
+              style="box-shadow: var(--shadow-polaroid)"
+            >
+              <Tape class="left-1/2 top-[-11px] -translate-x-1/2" />
+              <blockquote class="m-0 text-ink">
+                <p class="m-0">“{r.quote}”</p>
+              </blockquote>
+              <figcaption class="mt-6 flex items-center gap-3">
+                <OptimizedImg src={r.img} alt="" sizes="48px" class="size-12 rounded-full bg-white object-contain" />
+                <span>
+                  <span class="block font-semibold text-ink">{r.name}</span>
+                  <span class="block text-xs text-ink-muted">{r.role}</span>
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-4 flex justify-center gap-3">
+        <button type="button" data-reviews-prev aria-label="Recenzia anterioară" class="inline-flex size-11 items-center justify-center rounded-full bg-teal text-cream">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+        </button>
+        <button type="button" data-reviews-next aria-label="Recenzia următoare" class="inline-flex size-11 items-center justify-center rounded-full bg-teal text-cream">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-reviews-track]');
+  if (track) {
+    const step = (dir: number) => {
+      const card = track.querySelector<HTMLElement>('[data-review-card]');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const width = (card?.offsetWidth ?? track.clientWidth) + gap;
+      track.scrollBy({ left: dir * width, behavior: 'smooth' });
+    };
+    document.querySelector('[data-reviews-prev]')?.addEventListener('click', () => step(-1));
+    document.querySelector('[data-reviews-next]')?.addEventListener('click', () => step(1));
+  }
+</script>

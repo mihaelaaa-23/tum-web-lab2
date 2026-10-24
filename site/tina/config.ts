@@ -265,16 +265,6 @@ export default defineConfig({
           },
           {
             type: "string",
-            name: "phone",
-            label: "Phone Number",
-          },
-          {
-            type: "string",
-            name: "phoneDisplay",
-            label: "Phone Display Text",
-          },
-          {
-            type: "string",
             name: "email",
             label: "Email Address",
           },
@@ -287,6 +277,11 @@ export default defineConfig({
             type: "string",
             name: "telegramLabel",
             label: "Telegram Button Label",
+          },
+          {
+            type: "string",
+            name: "instagramHref",
+            label: "Instagram Link",
           },
         ],
       },
