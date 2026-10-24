@@ -1,0 +1,157 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Gloock&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  .moods { display: flex; flex-direction: column; gap: 2.25rem; }
+  .mood { cursor: pointer; border-radius: 14px; overflow: hidden; border: 2px solid transparent; transition: border-color .2s; }
+  .mood.selected { border-color: #026E82; }
+  .mood-label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .75rem 1rem; font-size: .9rem; }
+  .mood-label b { font-size: 1rem; white-space: nowrap; }
+  .stage { width: 1040px; }
+
+  .gd { --bg: #FBF7F1; --dot: #E9DFD3; --ink: #1E1715; --muted: #5D514B; --hand: #026E82; --hl: #F2C9CF; --cta-bg: #026E82; --cta-fg: #FBF7F1; --stat: #026E82; --tape: rgba(2,110,130,.35);
+        position: relative; display: grid; grid-template-columns: 1.1fr .9fr; min-height: 560px; overflow: hidden;
+        background: var(--bg); color: var(--ink); font-family: "Hanken Grotesk", sans-serif;
+        background-image: radial-gradient(var(--dot) 1px, transparent 1px); background-size: 18px 18px; }
+  .copy { position: relative; z-index: 3; padding: 2.25rem 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; }
+  .nav { display: flex; justify-content: space-between; align-items: center; font-size: .8rem; }
+  .nav .links span { margin-left: 1.4rem; }
+  .brand { font-family: "Gloock", serif; font-size: 1.3rem; }
+  .hand { font-family: Caveat, cursive; font-size: 1.6rem; color: var(--hand); transform: rotate(-3deg); display: inline-block; }
+  h1.t { font-family: "Gloock", serif; font-weight: 400; font-size: 3.5rem; line-height: 1; letter-spacing: -.02em; margin: .2rem 0 1rem; }
+  .cap { display: inline; padding: .08em .35em; border-radius: 4px; background: var(--hl); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .copy p { font-size: .95rem; color: var(--muted); max-width: 34ch; margin: 0 0 1.3rem; }
+  .cta { display: inline-flex; padding: .85rem 1.35rem; font-size: .85rem; font-weight: 600; border-radius: 10px; background: var(--cta-bg); color: var(--cta-fg); }
+  .stats { display: flex; gap: 2.2rem; }
+  .stats b { display: block; font-family: "Gloock", serif; font-size: 1.7rem; font-weight: 400; color: var(--stat); }
+  .stats span { font-size: .72rem; opacity: .75; }
+  .media { position: relative; }
+  .portrait { position: absolute; bottom: 0; right: 12%; height: 94%; object-fit: contain; z-index: 2; }
+  .paper { position: absolute; z-index: 1; background: #026E82; clip-path: polygon(3% 2%, 22% 0, 48% 3%, 71% 0, 97% 3%, 100% 30%, 97% 58%, 100% 84%, 96% 100%, 70% 97%, 44% 100%, 18% 97%, 0 100%, 2% 70%, 0 42%, 3% 18%); }
+  .polaroid { position: absolute; background: #fff; padding: 10px 10px 34px; box-shadow: 0 10px 30px rgba(0,0,0,.2); z-index: 4; }
+  .polaroid img { display: block; object-fit: cover; }
+  .polaroid .hand { position: absolute; bottom: 4px; left: 12px; font-size: 1.2rem; color: #1E1715; transform: none; }
+  .tape { position: absolute; width: 70px; height: 22px; background: var(--tape); top: -10px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
+  .leopard { position: absolute; width: 140px; height: 140px; border-radius: 50%; z-index: 1;
+     background: radial-gradient(circle at 30% 30%, #3B2418 6px, transparent 7px), radial-gradient(circle at 70% 60%, #3B2418 5px, transparent 6px), radial-gradient(circle at 50% 80%, #3B2418 4px, transparent 5px), #C9935C; background-size: 34px 34px; }
+  .sticker { position: absolute; z-index: 5; font: 700 .78rem/1.3 "Hanken Grotesk"; padding: .4rem .7rem; border-radius: 999px; transform: rotate(4deg); }
+  .paths { display: grid; grid-template-columns: 1fr 1fr; }
+  .paths a { padding: 1.1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; font-size: .92rem; font-family: "Hanken Grotesk", sans-serif; }
+  .paths small { display: block; font-size: .74rem; opacity: .75; margin-top: 2px; }
+
+  /* Level 1 — teal accents */
+  .l1 .paths a { background: #026E82; color: #FBF7F1; }
+  .l1 .paths a + a { background: #F2C9CF; color: #1E1715; }
+
+  /* Level 2 — teal paper + soft teal page */
+  .l2 .gd { --bg: #E4F0EF; --dot: #C9DFDE; --tape: rgba(242,201,207,.9); }
+  .l2 .paths a { background: #014E5C; color: #E4F0EF; }
+  .l2 .paths a + a { background: #026E82; color: #fff; }
+
+  /* Level 3 — full teal */
+  .l3 .gd { --bg: #026E82; --dot: #0B7F94; --ink: #FBF7F1; --muted: #CFE6E8; --hand: #F2C9CF; --hl: #F2C9CF; --cta-bg: #FBF7F1; --cta-fg: #014E5C; --stat: #FBF7F1; --tape: rgba(242,201,207,.9); }
+  .l3 h1.t .cap { color: #1E1715; }
+  .l3 .paper { background: #014E5C; }
+  .l3 .paths a { background: #FBF7F1; color: #014E5C; }
+  .l3 .paths a + a { background: #F2C9CF; color: #1E1715; }
+</style>
+
+<h2>How much teal?</h2>
+<p class="subtitle">Same GRWM Diary scrapbook, three levels of teal. Pink stays as her second color for highlights and tape. Click the level she likes.</p>
+
+<div class="moods">
+
+  <div class="mood l1" data-choice="teal-accents" onclick="toggleSelect(this)">
+    <div class="mood-label"><b>Level 1 · Teal accents</b><span>cream page; teal on the handwriting, button, stats, tape, a torn-paper panel behind her and the first door</span></div>
+    <div class="fit"><div class="stage">
+      <div class="gd">
+        <div class="copy">
+          <div class="nav"><div class="brand">Irina Ciobanu</div><div class="links"><span>Servicii</span><span>Rezultate</span><span>Jurnal</span><span>Contact</span></div></div>
+          <div>
+            <span class="hand">hei, eu sunt Irina ♡</span>
+            <h1 class="t">Fac brandul tău <span class="cap">să fie văzut.</span> Și cumpărat.</h1>
+            <p>SMM ziua, content creator restul timpului. Știu ce se uită oamenii pe TikTok pentru că îl fac și eu.</p>
+            <a class="cta">Scrie-mi →</a>
+          </div>
+          <div class="stats"><div><b>€20k+</b><span>vânzări / lună din TikTok</span></div><div><b>+3.3k</b><span>urmăritori pentru Horay</span></div><div><b>7 zile</b><span>până la prima vânzare</span></div></div>
+        </div>
+        <div class="media">
+          <div class="paper" style="left:70px;right:30px;top:70px;bottom:0"></div>
+          <div class="leopard" style="right:6px;top:22px"></div>
+          <img class="portrait" src="./irina-portrait.png" alt="">
+          <div class="polaroid" style="left:-10px;top:60px;transform:rotate(-6deg)"><div class="tape"></div><img src="./thumb-horay.png" alt="" style="width:120px;height:150px"><span class="hand">Horay ⚡</span></div>
+          <div class="polaroid" style="right:14px;bottom:30px;transform:rotate(5deg)"><div class="tape"></div><img src="./thumb-garduri.png" alt="" style="width:110px;height:140px"><span class="hand">+60 comenzi!</span></div>
+        </div>
+      </div>
+      <div class="paths">
+        <a><span>Am o afacere locală<small>Cafenea, salon, magazin: mă ocup eu de tot</small></span>→</a>
+        <a><span>Sunt un brand în creștere<small>TikTok, UGC și campanii care vând</small></span>→</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="mood l2" data-choice="teal-paper" onclick="toggleSelect(this)">
+    <div class="mood-label"><b>Level 2 · Soft teal page</b><span>a pale teal page, a big teal paper panel, pink tape, and both doors in teal</span></div>
+    <div class="fit"><div class="stage">
+      <div class="gd">
+        <div class="copy">
+          <div class="nav"><div class="brand">Irina Ciobanu</div><div class="links"><span>Servicii</span><span>Rezultate</span><span>Jurnal</span><span>Contact</span></div></div>
+          <div>
+            <span class="hand">hei, eu sunt Irina ♡</span>
+            <h1 class="t">Fac brandul tău <span class="cap">să fie văzut.</span> Și cumpărat.</h1>
+            <p>SMM ziua, content creator restul timpului. Știu ce se uită oamenii pe TikTok pentru că îl fac și eu.</p>
+            <a class="cta">Scrie-mi →</a>
+          </div>
+          <div class="stats"><div><b>€20k+</b><span>vânzări / lună din TikTok</span></div><div><b>+3.3k</b><span>urmăritori pentru Horay</span></div><div><b>7 zile</b><span>până la prima vânzare</span></div></div>
+        </div>
+        <div class="media">
+          <div class="paper" style="left:20px;right:0;top:30px;bottom:0"></div>
+          <div class="leopard" style="right:16px;top:8px;width:110px;height:110px"></div>
+          <img class="portrait" src="./irina-portrait.png" alt="">
+          <div class="polaroid" style="left:-14px;top:70px;transform:rotate(-6deg)"><div class="tape"></div><img src="./thumb-horay.png" alt="" style="width:120px;height:150px"><span class="hand">Horay ⚡</span></div>
+          <div class="polaroid" style="right:14px;bottom:30px;transform:rotate(5deg)"><div class="tape"></div><img src="./thumb-garduri.png" alt="" style="width:110px;height:140px"><span class="hand">+60 comenzi!</span></div>
+          <div class="sticker" style="background:#F2C9CF;color:#1E1715;left:150px;top:44px">SMM ziua ✨</div>
+        </div>
+      </div>
+      <div class="paths">
+        <a><span>Am o afacere locală<small>Cafenea, salon, magazin: mă ocup eu de tot</small></span>→</a>
+        <a><span>Sunt un brand în creștere<small>TikTok, UGC și campanii care vând</small></span>→</a>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="mood l3" data-choice="full-teal" onclick="toggleSelect(this)">
+    <div class="mood-label"><b>Level 3 · Full teal</b><span>the whole hero is teal paper, with cream text, pink highlights and white polaroids</span></div>
+    <div class="fit"><div class="stage">
+      <div class="gd">
+        <div class="copy">
+          <div class="nav"><div class="brand">Irina Ciobanu</div><div class="links"><span>Servicii</span><span>Rezultate</span><span>Jurnal</span><span>Contact</span></div></div>
+          <div>
+            <span class="hand">hei, eu sunt Irina ♡</span>
+            <h1 class="t">Fac brandul tău <span class="cap">să fie văzut.</span> Și cumpărat.</h1>
+            <p>SMM ziua, content creator restul timpului. Știu ce se uită oamenii pe TikTok pentru că îl fac și eu.</p>
+            <a class="cta">Scrie-mi →</a>
+          </div>
+          <div class="stats"><div><b>€20k+</b><span>vânzări / lună din TikTok</span></div><div><b>+3.3k</b><span>urmăritori pentru Horay</span></div><div><b>7 zile</b><span>până la prima vânzare</span></div></div>
+        </div>
+        <div class="media">
+          <div class="paper" style="left:60px;right:30px;top:60px;bottom:0"></div>
+          <div class="leopard" style="right:10px;top:20px"></div>
+          <img class="portrait" src="./irina-portrait.png" alt="">
+          <div class="polaroid" style="left:-10px;top:60px;transform:rotate(-6deg)"><div class="tape"></div><img src="./thumb-horay.png" alt="" style="width:120px;height:150px"><span class="hand">Horay ⚡</span></div>
+          <div class="polaroid" style="right:14px;bottom:30px;transform:rotate(5deg)"><div class="tape"></div><img src="./thumb-garduri.png" alt="" style="width:110px;height:140px"><span class="hand">+60 comenzi!</span></div>
+        </div>
+      </div>
+      <div class="paths">
+        <a><span>Am o afacere locală<small>Cafenea, salon, magazin: mă ocup eu de tot</small></span>→</a>
+        <a><span>Sunt un brand în creștere<small>TikTok, UGC și campanii care vând</small></span>→</a>
+      </div>
+    </div></div>
+  </div>
+
+</div>
+
+<script>
+function fitStages(){document.querySelectorAll('.fit').forEach(f=>{f.querySelector('.stage').style.zoom=Math.min(1,f.clientWidth/1040);});}
+window.addEventListener('resize',fitStages);fitStages();setTimeout(fitStages,300);
+</script>
