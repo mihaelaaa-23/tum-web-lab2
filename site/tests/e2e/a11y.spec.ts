@@ -24,3 +24,15 @@ test('section order', async ({ page }) => {
   const present = ids.filter((i) => order.includes(i));
   expect(present).toEqual(order.filter((i) => present.includes(i)));
 });
+
+test('case images and review avatars actually load', async ({ page }) => {
+  await page.goto('/');
+  const imgs = page.locator('#rezultate img, #recenzii img');
+  const n = await imgs.count();
+  expect(n).toBeGreaterThan(3);
+  for (let i = 0; i < n; i++) {
+    const img = imgs.nth(i);
+    await img.scrollIntoViewIfNeeded();
+    await expect.poll(() => img.evaluate((e: HTMLImageElement) => e.complete && e.naturalWidth > 0), { timeout: 5000 }).toBe(true);
+  }
+});

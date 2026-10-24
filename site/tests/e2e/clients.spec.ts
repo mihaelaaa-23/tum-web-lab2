@@ -44,3 +44,17 @@ test('marquee stops under reduced motion', async ({ page }) => {
   for (const b of boxes) { expect(b.l).toBeGreaterThanOrEqual(0); expect(b.r).toBeLessThanOrEqual(vw); }
   if (vw <= 400) expect(new Set(boxes.map(b => b.t)).size).toBeGreaterThan(1);
 });
+
+for (const reducedMotion of ['reduce', 'no-preference'] as const) {
+  test(`logos are sized (${reducedMotion})`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion });
+    await page.goto('/');
+    const sizes = await page.$$eval('ul[aria-label="Clienți"] img', (els) =>
+      els.map((e) => { const r = e.getBoundingClientRect(); return { w: r.width, h: r.height }; }));
+    expect(sizes.length).toBeGreaterThan(0);
+    for (const s of sizes) {
+      expect(s.h).toBeLessThanOrEqual(56);
+      expect(s.w).toBeLessThanOrEqual(160);
+    }
+  });
+}

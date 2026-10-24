@@ -51,7 +51,7 @@ const clients = allClients.filter((c: any) => !c.hidden);
     list-style: none;
   }
   .clients-item { display: flex; align-items: center; justify-content: center; }
-  .clients-logo { display: block; height: 3.5rem; width: auto; max-width: 10rem; object-fit: contain; }
+  :global(.clients-logo) { display: block; height: 3.5rem; width: auto; max-width: 10rem; object-fit: contain; }
   @keyframes clients-scroll {
     to { transform: translateX(-50%); }
   }
