@@ -1,0 +1,108 @@
+---
+import servicesData from '../../../content/services/index.json';
+import Sticker from '../primitives/Sticker.astro';
+
+const { headline, subtext, packages: allPackages } = servicesData;
+const packages = allPackages.filter((pkg: any) => !pkg.hidden);
+const tabs = [
+  { id: 'local', label: 'Afacere locală' },
+  { id: 'brand', label: 'Brand în creștere' },
+];
+---
+<section id="servicii" class="section bg-cream" aria-labelledby="services-heading">
+  <div class="mx-auto max-w-[1100px] px-4">
+    <h2 id="services-heading" class="mb-3 text-center text-ink">{headline}</h2>
+    <p class="mx-auto mb-8 max-w-2xl text-center text-ink-muted">{subtext}</p>
+
+    <div role="tablist" aria-label="Pentru cine este" data-tablist class="mx-auto mb-8 flex max-w-md flex-col gap-2 sm:flex-row">
+      {tabs.map((t, i) => (
+        <button
+          type="button" role="tab" id={`tab-${t.id}`} data-audience={t.id}
+          aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? '0' : '-1'}
+          class="services-tab min-h-11 flex-1 rounded-[10px] border-2 border-teal px-4 py-2 font-semibold text-teal"
+        >{t.label}</button>
+      ))}
+    </div>
+
+    {tabs.map((t) => (
+      <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} data-panel class="services-panel">
+        <ul class="grid gap-6 md:grid-cols-2">
+          {packages.filter((p: any) => p.audience === t.id).map((pkg: any) => (
+            <li class="services-card relative flex flex-col rounded-[10px] border border-paper-dot bg-cream p-6">
+              {pkg.popular && <Sticker class="absolute -top-3 right-4" rotate={4}>cel mai ales</Sticker>}
+              <h3 class="mb-2 text-2xl text-ink">{pkg.name}</h3>
+              <p class="mb-4 text-ink-muted">{pkg.promise}</p>
+              {pkg.features && pkg.features.length > 0 ? (
+                <ul class="mb-6 space-y-1.5">
+                  {pkg.features.map((f: string) => (
+                    <li class="flex gap-2"><span aria-hidden="true" class="text-teal">+</span><span>{f}</span></li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="mb-6">{pkg.featuresText}</p>
+              )}
+              <a href="#contact" class="mt-auto inline-flex min-h-11 items-center justify-center rounded-[10px] bg-teal px-5 py-2 font-semibold text-cream">{pkg.ctaLabel}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .services-card {
+    padding-top: 2.5rem;
+    background-image: radial-gradient(var(--color-paper-dot) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+    background-repeat: repeat-x;
+    background-position: 0 14px;
+  }
+  .services-tab[aria-selected='true'] {
+    background: var(--color-teal);
+    color: var(--color-cream);
+  }
+  .services-panel[hidden] { display: none; }
+  .services-panel + .services-panel { margin-top: 3rem; }
+</style>
+
+<script>
+  import { audienceFromHash, type Audience } from '../../lib/tabs';
+
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('#servicii [role="tab"]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('#servicii [data-panel]'));
+
+  function select(audience: Audience, focus = false) {
+    tabs.forEach((tab) => {
+      const on = tab.dataset.audience === audience;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      if (on && focus) tab.focus();
+    });
+    panels.forEach((p) => { p.hidden = p.id !== `panel-${audience}`; });
+  }
+
+  function fromHash(scroll: boolean) {
+    const audience = audienceFromHash(location.hash);
+    if (audience) {
+      select(audience);
+      if (scroll) document.getElementById('servicii')?.scrollIntoView();
+    }
+  }
+
+  select('local');
+  fromHash(true);
+  window.addEventListener('hashchange', () => fromHash(true));
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab.dataset.audience as Audience));
+    tab.addEventListener('keydown', (e) => {
+      const last = tabs.length - 1;
+      const next = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      select(tabs[next].dataset.audience as Audience, true);
+    });
+  });
+</script>

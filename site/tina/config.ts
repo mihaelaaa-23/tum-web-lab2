@@ -144,13 +144,17 @@ export default defineConfig({
               },
               {
                 type: "string",
-                name: "badge",
-                label: "Badge",
+                name: "audience",
+                label: "Audience",
+                options: [
+                  { value: "local", label: "Afacere locală" },
+                  { value: "brand", label: "Brand în creștere" },
+                ],
               },
               {
                 type: "string",
-                name: "tagline",
-                label: "Tagline (back of card)",
+                name: "promise",
+                label: "Promise (one line)",
               },
               {
                 type: "string",
@@ -167,6 +171,11 @@ export default defineConfig({
                 type: "string",
                 name: "ctaLabel",
                 label: "CTA Label",
+              },
+              {
+                type: "boolean",
+                name: "popular",
+                label: 'Show "cel mai ales" sticker',
               },
               {
                 type: "boolean",

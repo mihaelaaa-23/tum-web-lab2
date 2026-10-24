@@ -1,11 +1,11 @@
 {
-  "headline": "Pachete SMM",
-  "subtext": "Soluții personalizate pentru fiecare business. Hai să discutăm ce se potrivește perfect pentru tine.",
+  "headline": "Servicii",
+  "subtext": "Alege pachetul care se potrivește businessului tău. Dacă nu ești sigur, scrie-mi și găsim împreună varianta potrivită.",
   "packages": [
     {
       "name": "SMM Standard",
-      "badge": "Standard",
-      "tagline": "Social Media Esențial",
+      "audience": "local",
+      "promise": "Contul tău arată îngrijit și activ, iar tu nu mai stai să te gândești ce postezi mâine.",
       "features": [
         "9 postări / lună",
         "2/3 Story pe zi",
@@ -14,39 +14,60 @@
       ],
       "featuresText": "",
       "ctaLabel": "Solicită o consultație",
+      "popular": false,
       "hidden": false
     },
     {
       "name": "SMM Pro",
-      "badge": "Popular",
-      "tagline": "Cel Mai Popular",
+      "audience": "local",
+      "promise": "Prezență zilnică pe rețele, cu mine în spatele fiecărui cuvânt și al fiecărui răspuns.",
       "features": [
         "15 postări / lună",
         "3 Story pe zi",
         "Copywriting & Moderare"
       ],
       "featuresText": "",
-      "ctaLabel": "Vreau ofertă"
+      "ctaLabel": "Vreau ofertă",
+      "popular": true,
+      "hidden": false
     },
     {
       "name": "TikTok Boost",
-      "badge": "TikTok",
-      "tagline": "Creștere Virală",
+      "audience": "brand",
+      "promise": "Filmăm, scriem scenariile și postăm constant, ca brandul tău să fie văzut pe TikTok.",
       "features": [
         "Video zilnic (6/săpt)",
         "25 TikTok-uri / lună",
         "Plan de postări & Scenarii"
       ],
       "featuresText": "",
-      "ctaLabel": "Hai să vorbim"
+      "ctaLabel": "Hai să vorbim",
+      "popular": false,
+      "hidden": false
     },
     {
       "name": "Personalizat",
-      "badge": "Custom",
-      "tagline": "100% Al Tău",
+      "audience": "brand",
+      "promise": "Pornim de la obiectivele tale și construim împreună exact ce ai nevoie, fără pachete de-a gata.",
       "features": [],
       "featuresText": "Strategie unică adaptată exact obiectivelor tale. Hai să discutăm ce funcționează pentru businessul tău.",
-      "ctaLabel": "Cere detalii"
+      "ctaLabel": "Cere detalii",
+      "popular": false,
+      "hidden": false
+    },
+    {
+      "name": "UGC & campanii",
+      "audience": "brand",
+      "promise": "Conținut video care arată ca de la un client real și lucrează pentru reclamele tale.",
+      "features": [
+        "Video UGC pentru reclame",
+        "Concept & scenariu",
+        "Drepturi de utilizare incluse"
+      ],
+      "featuresText": "",
+      "ctaLabel": "Cere detalii",
+      "popular": false,
+      "hidden": true
     }
   ]
 }
