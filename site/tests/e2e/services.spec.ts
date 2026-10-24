@@ -72,3 +72,10 @@ test('no horizontal overflow at 320px on either tab', async ({ page }) => {
     expect(over, `overflow on ${id} tab`).toBe(false);
   }
 });
+
+test('door anchors resolve without JS and package lists keep list semantics', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#servicii-local')).toBeAttached();
+  await expect(page.locator('#servicii-brand')).toBeAttached();
+  await expect(page.locator('#servicii ul[role="list"]').first()).toBeAttached();
+});

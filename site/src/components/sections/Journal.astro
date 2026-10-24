@@ -17,13 +17,13 @@ const show = handle !== '';
     <div class="mx-auto max-w-[1100px] px-4">
       <h2 id="journal-heading" class="reveal mb-4 text-center text-ink">{headline}</h2>
       <p class="mb-10 text-center">
-        <a href={profileUrl} target="_blank" rel="noopener" class="inline-flex min-h-11 items-center font-semibold text-teal underline underline-offset-4">@{handle}</a>
+        <a href={profileUrl} target="_blank" rel="noopener" class="inline-flex min-h-11 items-center font-semibold text-teal underline underline-offset-4">@{handle}<span class="sr-only"> (se deschide într-o filă nouă)</span></a>
       </p>
       {tiles.length > 0 && (
         <ul role="list" aria-label="Postări recente" class="m-0 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto p-0 pb-4">
           {tiles.map((t) => (
             <li class="w-40 shrink-0 snap-start sm:w-48">
-              <a href={t.url} target="_blank" rel="noopener" aria-label={(t.caption ?? '').trim() || 'Video TikTok'} class="block overflow-hidden rounded-[10px]">
+              <a href={t.url} target="_blank" rel="noopener" aria-label={`${(t.caption ?? '').trim() || 'Video TikTok'} (se deschide într-o filă nouă)`} class="block overflow-hidden rounded-[10px]">
                 <OptimizedImg src={t.img} alt="" sizes="192px" class="aspect-[9/16] w-full object-cover" />
               </a>
             </li>

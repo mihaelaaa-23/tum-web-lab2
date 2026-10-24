@@ -10,6 +10,8 @@ const tabs = [
 ];
 ---
 <section id="servicii" class="section bg-cream" aria-labelledby="services-heading">
+  <span id="servicii-local" aria-hidden="true" class="block h-0"></span>
+  <span id="servicii-brand" aria-hidden="true" class="block h-0"></span>
   <div class="mx-auto max-w-[1100px] px-4">
     <h2 id="services-heading" class="reveal mb-3 text-center text-ink">{headline}</h2>
     <p class="mx-auto mb-8 max-w-2xl text-center text-ink-muted">{subtext}</p>
@@ -27,14 +29,14 @@ const tabs = [
 
     {tabs.map((t) => (
       <div role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} data-panel class="services-panel">
-        <ul class="grid gap-6 md:grid-cols-2">
+        <ul role="list" class="grid gap-6 md:grid-cols-2">
           {packages.filter((p: any) => p.audience === t.id).map((pkg: any) => (
             <li class="services-card relative flex flex-col rounded-[10px] border border-paper-dot bg-cream p-6">
               {pkg.popular && <Sticker class="absolute -top-3 right-4" rotate={4}>cel mai ales</Sticker>}
               <h3 class="mb-2 text-2xl text-ink">{pkg.name}</h3>
               <p class="mb-4 text-ink-muted">{pkg.promise}</p>
               {pkg.features && pkg.features.length > 0 ? (
-                <ul class="mb-6 space-y-1.5">
+                <ul role="list" class="mb-6 space-y-1.5">
                   {pkg.features.map((f: string) => (
                     <li class="flex gap-2"><span aria-hidden="true" class="text-teal">+</span><span>{f}</span></li>
                   ))}

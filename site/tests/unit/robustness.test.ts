@@ -43,7 +43,7 @@ test('Journal derives the profile URL when empty', async () => {
 
 test('Journal tile with empty caption gets a fallback label', async () => {
   const html = await journal({ headline: 'x', handle: 'irina', profileUrl: '', tiles: [{ img: '/img/a.jpg', url: 'https://www.tiktok.com/@irina/video/1', caption: '' }] });
-  expect(html).toContain('aria-label="Video TikTok"');
+  expect(html).toContain('aria-label="Video TikTok (se');
 });
 
 test('Results renders cases without a featured block', async () => {
@@ -66,4 +66,12 @@ test('Doors cycles tones when there are more than two doors', async () => {
   expect(classes).toHaveLength(3);
   expect(classes[2]).toContain('bg-teal');
   expect(classes[2]).not.toContain('undefined');
+});
+
+test('external links announce the new tab', async () => {
+  const j = await journal({ headline: 'x', handle: 'irina', profileUrl: '', tiles: [{ img: '/img/a.jpg', url: 'https://t.co/1', caption: 'Primul' }] });
+  expect(j).toContain('(se deschide într-o filă nouă)</span>');
+  expect(j).toContain('aria-label="Primul (se deschide într-o filă nouă)"');
+  const contact = await c.renderToString((await import('../../src/components/sections/Contact.astro')).default);
+  expect((contact.match(/se deschide într-o filă nouă/g) ?? []).length).toBe(2);
 });

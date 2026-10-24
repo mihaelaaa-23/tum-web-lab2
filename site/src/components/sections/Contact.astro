@@ -13,8 +13,8 @@ const btn = 'inline-flex min-h-12 items-center justify-center rounded-[10px] px-
     <h2 id="contact-heading" class="reveal mb-4 text-ink">{headline}</h2>
     <p class="mb-8 text-ink-muted">{subtext}</p>
     <div class="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-      <a href={telegramHref} target="_blank" rel="noopener" class:list={[btn, 'bg-teal text-cream']}>{telegramLabel}</a>
-      <a href={instagramHref} target="_blank" rel="noopener" class:list={[btn, 'border-2 border-teal text-teal']}>Scrie-mi pe Instagram</a>
+      <a href={telegramHref} target="_blank" rel="noopener" class:list={[btn, 'bg-teal text-cream']}>{telegramLabel}<span class="sr-only"> (se deschide într-o filă nouă)</span></a>
+      <a href={instagramHref} target="_blank" rel="noopener" class:list={[btn, 'border-2 border-teal text-teal']}>Scrie-mi pe Instagram<span class="sr-only"> (se deschide într-o filă nouă)</span></a>
       <a href={`mailto:${email}`} class:list={[btn, 'border-2 border-teal text-teal']}>Scrie-mi pe email</a>
     </div>
   </div>
