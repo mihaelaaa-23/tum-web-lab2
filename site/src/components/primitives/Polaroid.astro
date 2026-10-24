@@ -1,0 +1,26 @@
+---
+import OptimizedImg from './OptimizedImg.astro';
+import Tape from './Tape.astro';
+import HandNote from './HandNote.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  note?: string;
+  rotate?: number;
+  width: number;
+  height: number;
+  class?: string;
+}
+const { src, alt, note, rotate = 0, width, height, class: className = '' } = Astro.props;
+const angle = Math.min(6, Math.max(-6, rotate));
+---
+<figure
+  class:list={['relative m-0 rounded-none bg-white px-[10px] pt-[10px] pb-[34px] shadow-polaroid', className]}
+  style={`transform: rotate(${angle}deg)`}>
+  <Tape class="-top-[10px] left-1/2 -translate-x-1/2 -rotate-[4deg]" />
+  <div style={`width:${width}px;height:${height}px;max-width:100%`}>
+    <OptimizedImg src={src} alt={alt} sizes={`${width}px`} class="block size-full object-cover" />
+  </div>
+  {note && <HandNote class="absolute bottom-1 left-3 rotate-0! text-xl! text-ink!">{note}</HandNote>}
+</figure>

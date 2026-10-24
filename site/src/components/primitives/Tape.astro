@@ -1,0 +1,12 @@
+---
+interface Props {
+  color?: 'teal' | 'blush';
+  class?: string;
+}
+const { color = 'teal', class: className = '' } = Astro.props;
+const tint = color === 'teal' ? 'background-color: rgb(2 110 130 / .35)' : undefined;
+---
+<span
+  aria-hidden="true"
+  class:list={['pointer-events-none absolute block h-[22px] w-[70px]', color === 'blush' && 'bg-blush', className]}
+  style={tint}></span>

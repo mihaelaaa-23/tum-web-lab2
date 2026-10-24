@@ -1,0 +1,16 @@
+---
+interface Props {
+  tone?: 'blush' | 'teal';
+  rotate?: number;
+  class?: string;
+}
+const { tone = 'blush', rotate = 4, class: className = '' } = Astro.props;
+const angle = Math.min(6, Math.max(-6, rotate));
+---
+<span
+  class:list={[
+    'inline-block rounded-full px-3 py-1.5 text-xs font-bold leading-snug',
+    tone === 'blush' ? 'bg-blush text-ink' : 'bg-teal text-cream',
+    className,
+  ]}
+  style={`transform: rotate(${angle}deg)`}><slot /></span>

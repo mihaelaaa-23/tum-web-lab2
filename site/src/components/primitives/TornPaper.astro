@@ -1,0 +1,11 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<div
+  aria-hidden="true"
+  class:list={['pointer-events-none bg-teal', className]}
+  style="clip-path: polygon(3% 2%, 22% 0, 48% 3%, 71% 0, 97% 3%, 100% 30%, 97% 58%, 100% 84%, 96% 100%, 70% 97%, 44% 100%, 18% 97%, 0 100%, 2% 70%, 0 42%, 3% 18%)">
+</div>
