@@ -1,0 +1,63 @@
+---
+import clientsData from '../../../content/clients/index.json';
+import OptimizedImg from '../primitives/OptimizedImg.astro';
+
+const { headline, subtext, clients: allClients } = clientsData;
+const clients = allClients.filter((c: any) => !c.hidden);
+---
+<section id="trusted-clients" class="section bg-cream overflow-hidden" aria-labelledby="clients-heading">
+  <div class="mx-auto max-w-[1100px] px-4 text-center">
+    <h2 id="clients-heading" class="mb-3 text-ink">{headline}</h2>
+    <p class="mx-auto mb-10 max-w-2xl text-ink-muted md:mb-14">{subtext}</p>
+  </div>
+  <div class="clients-marquee">
+    <div class="clients-track" data-marquee-track>
+      <ul aria-label="Clienți" class="clients-list">
+        {clients.map((c: any) => (
+          <li class="clients-item">
+            <OptimizedImg src={c.img} alt={c.alt} sizes="160px" class="clients-logo" />
+          </li>
+        ))}
+      </ul>
+      <ul class="clients-list clients-list-copy" aria-hidden="true">
+        {clients.map((c: any) => (
+          <li class="clients-item">
+            <OptimizedImg src={c.img} alt="" sizes="160px" class="clients-logo" />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .clients-marquee { overflow: hidden; }
+  .clients-track {
+    display: flex;
+    width: max-content;
+    animation: clients-scroll 40s linear infinite;
+  }
+  .clients-marquee:hover .clients-track,
+  .clients-marquee:focus-within .clients-track {
+    animation-play-state: paused;
+  }
+  .clients-list {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 3rem;
+    padding-right: 3rem;
+    margin: 0;
+    list-style: none;
+  }
+  .clients-item { display: flex; align-items: center; justify-content: center; }
+  .clients-logo { display: block; height: 3.5rem; width: auto; max-width: 10rem; object-fit: contain; }
+  @keyframes clients-scroll {
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .clients-track { animation: none; width: auto; max-width: 1100px; margin-inline: auto; padding-inline: 1rem; }
+    .clients-list { flex-wrap: wrap; justify-content: center; padding-right: 0; row-gap: 2rem; }
+    .clients-list-copy { display: none; }
+  }
+</style>
