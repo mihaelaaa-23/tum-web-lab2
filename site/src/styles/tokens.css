@@ -1,0 +1,85 @@
+@theme {
+  --color-cream: #FBF7F1;
+  --color-teal: #026E82;
+  --color-teal-deep: #014E5C;
+  --color-teal-mist: #E4F0EF;
+  --color-blush: #F2C9CF;
+  --color-ink: #1E1715;
+  --color-ink-muted: #5D514B;
+  --color-paper-dot: #E9DFD3;
+  --color-leopard-tan: #C9935C;
+  --color-leopard-spot: #3B2418;
+
+  --font-display: "Gloock", Georgia, serif;
+  --font-sans: "Hanken Grotesk Variable", system-ui, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  --shadow-polaroid: 0 10px 30px rgb(30 23 21 / .18);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-cream);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+  }
+  h2 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+  }
+  small {
+    font-size: 0.75rem;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 3px;
+  }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 100;
+  transform: translateY(-120%);
+  padding: 0.75rem 1rem;
+  min-height: 44px;
+  background: var(--color-teal-deep);
+  color: #fff;
+  border-radius: 10px;
+}
+.skip-link:focus {
+  transform: translateY(1rem);
+}
+
+.paper-dots {
+  background-color: var(--color-cream);
+  background-image: radial-gradient(var(--color-paper-dot) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+.section {
+  padding-block: 64px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 96px;
+  }
+}
