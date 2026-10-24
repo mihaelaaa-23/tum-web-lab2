@@ -505,7 +505,7 @@ test('reduced motion: nothing animates', async ({ page }) => {
   command = "npm run build"
   publish = "dist"
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
   PUBLIC_PREVIEW = "true"
 ```
 

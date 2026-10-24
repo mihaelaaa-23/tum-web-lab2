@@ -19,9 +19,9 @@ const { handNote, headlineBefore, headlineHighlight, headlineAfter, subtext, cta
     </div>
     <dl class="m-0 grid grid-cols-3 gap-3 md:flex md:gap-9">
       {stats.map((s) => (
-        <div data-stat>
-          <dd class="m-0 font-display text-2xl text-teal md:text-[1.7rem]">{s.value}</dd>
-          <dt class="text-xs text-ink-muted">{s.label}</dt>
+        <div data-stat class="flex flex-col">
+          <dt class="order-2 text-xs text-ink-muted">{s.label}</dt>
+          <dd class="m-0 order-1 font-display text-2xl text-teal md:text-[1.7rem]">{s.value}</dd>
         </div>
       ))}
     </dl>
@@ -33,7 +33,7 @@ const { handNote, headlineBefore, headlineHighlight, headlineAfter, subtext, cta
       <OptimizedImg src={portrait} alt="Irina Ciobanu, specialist SMM și creator de conținut" sizes="(min-width: 768px) 40vw, 80vw" loading="eager" fetchpriority="high" class="block h-[94%] max-h-full w-auto object-contain" />
     </div>
     <div class="absolute top-16 left-2 z-[4] md:-left-2.5 md:top-[60px]">
-      <Polaroid src={polaroids[0].img} alt={polaroids[0].alt} note={polaroids[0].note} rotate={-6} width={96} height={120} class="md:[&>div]:!w-[120px] md:[&>div]:!h-[150px]" />
+      <Polaroid src={polaroids[0].img} alt={polaroids[0].alt} note={polaroids[0].note} rotate={-6} width={110} height={140} />
     </div>
     <div class="absolute right-3.5 bottom-7 z-[4] hidden md:block">
       <Polaroid src={polaroids[1].img} alt={polaroids[1].alt} note={polaroids[1].note} rotate={5} width={110} height={140} />
