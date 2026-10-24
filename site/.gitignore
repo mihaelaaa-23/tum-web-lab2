@@ -26,3 +26,7 @@ pnpm-debug.log*
 node_modules
 test-results/
 playwright-report/
+
+# generated image variants and manifest
+public/img/_opt/
+src/generated/
