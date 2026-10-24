@@ -102,7 +102,7 @@
   }
 
   @supports (animation-timeline: view()) {
-    .reveal {
+    html:not(.reveal-io) .reveal {
       animation: rise .5s ease-out both;
       animation-timeline: view();
       animation-range: entry 0% entry 40%;
@@ -110,14 +110,12 @@
   }
 
   /* IntersectionObserver fallback; the html class is only set by JS when needed. */
-  @supports not (animation-timeline: view()) {
-    html.reveal-io .reveal:not(.is-visible) {
-      opacity: 0;
-      translate: 0 16px;
-    }
-    html.reveal-io .reveal {
-      transition: opacity .5s ease-out, translate .5s ease-out;
-    }
+  html.reveal-io .reveal:not(.is-visible) {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  html.reveal-io .reveal {
+    transition: opacity .5s ease-out, translate .5s ease-out;
   }
 
   .settle {
