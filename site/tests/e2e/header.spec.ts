@@ -18,7 +18,7 @@ test('menu link click closes the menu and restores focus', async ({ page }) => {
   await page.goto('/');
   const t = page.locator('#menu-toggle');
   await t.click();
-  await page.locator('#mobile-nav li:nth-child(4) a').click();
+  await page.locator('#mobile-nav a[href="#contact"]').first().click();
   await expect(t).toHaveAttribute('aria-expanded', 'false');
   await expect(t).toBeFocused();
 });

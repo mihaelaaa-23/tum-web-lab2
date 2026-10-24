@@ -382,6 +382,27 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "journal",
+        label: "Journal (TikTok)",
+        path: "content/journal",
+        format: "json",
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "headline", label: "Headline" },
+          { type: "string", name: "handle", label: "TikTok handle (leave empty to hide the section)" },
+          { type: "string", name: "profileUrl", label: "Profile URL" },
+          {
+            type: "object", name: "tiles", label: "Tiles", list: true,
+            ui: { itemProps: (item) => ({ label: item?.caption || "Tile" }) },
+            fields: [
+              { type: "image", name: "img", label: "Image (9:16)" },
+              { type: "string", name: "url", label: "Video URL" },
+              { type: "string", name: "caption", label: "Caption" },
+            ],
+          },
+        ],
+      },
     ],
   },
 });

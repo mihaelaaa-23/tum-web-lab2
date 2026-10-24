@@ -1,0 +1,32 @@
+---
+import journalData from '../../../content/journal/index.json';
+import OptimizedImg from '../primitives/OptimizedImg.astro';
+
+interface Props {
+  data?: { headline: string; handle: string; profileUrl: string; tiles: { img: string; url: string; caption: string }[] };
+}
+const { data = journalData } = Astro.props;
+const { headline, handle, profileUrl, tiles } = data;
+const show = handle.trim() !== '';
+---
+{show && (
+  <section id="jurnal" class="section scroll-mt-20 bg-cream" aria-labelledby="journal-heading">
+    <div class="mx-auto max-w-[1100px] px-4">
+      <h2 id="journal-heading" class="mb-4 text-center text-ink">{headline}</h2>
+      <p class="mb-10 text-center">
+        <a href={profileUrl} target="_blank" rel="noopener" class="inline-flex min-h-11 items-center font-semibold text-teal underline underline-offset-4">@{handle}</a>
+      </p>
+      {tiles.length > 0 && (
+        <ul class="m-0 flex list-none snap-x snap-mandatory gap-4 overflow-x-auto p-0 pb-4">
+          {tiles.map((t) => (
+            <li class="w-40 shrink-0 snap-start sm:w-48">
+              <a href={t.url} target="_blank" rel="noopener" aria-label={t.caption} class="block overflow-hidden rounded-[10px]">
+                <OptimizedImg src={t.img} alt="" sizes="192px" class="aspect-[9/16] w-full object-cover" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+)}
